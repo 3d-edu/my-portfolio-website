@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>my portifolia</title>
+    <style>
+        body {
+            color: black;
+            padding: 20px;
+            background: grey;
+            text-align: center;
+            border: 2px solid black;
+            border-radius: 20px;
+
+        }
+
+        html {
+            scroll-behavior: smooth;
+
+        }
+
+        div {
+            background-color: lightgray;
+            padding: 20px;
+            margin-bottom: 20px;
+            border: 2px solid black;
+            border-radius: 10px;
+            justify-content: center;
+            text-align: center;
+            align-items: center;
+            display: block;
+
+
+        }
+
+        .contact ul {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        .contact ul li {
+            margin-bottom: 10px;
+        }
+
+        .contact ul li a {
+            text-decoration: none;
+            color: black;
+            font-weight: bold;
+        }
+
+        h1 {
+            display: block;
+            background: white;
+            width: 100%;
+            text-align: center;
+            border-radius: 220px;
+
+
+        }
+
+        input {
+            padding: 10px;
+            width: 100%;
+            border: 2px solid black;
+            border-radius: 5px;
+            display: block;
+        }
+
+        button {
+            padding: 10px 20px;
+            background-color: black;
+            color: white;
+            border: none;
+            border-radius: 20px;
+            width: 100%;
+
+        }
+
+
+        form {
+            display: block;
+            text-align: center;
+            align-items: center;
+
+        }
+
+        h2 {
+            text-align: center;
+            text-transform: capitalize;
+
+        }
+
+        #signin {
+            display: block;
+            text-align: center;
+            align-items: center;
+            background: rebeccapurple;
+        }
+
+        details {
+            display: block;
+            text-decoration: none;
+            text-align: center;
+            align-items: center;
+            background: rebeccapurple;
+            padding: 10px;
+            border-radius: 10px;
+            text-align: center;
+            text-transform: capitalize;
+        }
+
+        a {
+            text-decoration: none;
+            font-size: x-large;
+            text-transform: capitalize;
+        }
+
+        header {
+
+            align-items: center;
+            background: white;
+            padding: 10px;
+            width: 100%;
+            border-radius: 20px;
+
+        }
+
+        nav ol {
+            list-style-type: none;
+            padding: 1px 2px 3px ;
+            background: yellow;
+            padding: 10px;
+            border-radius: 10px;
+            display: inline-flex;
+            width: 90%;
+            justify-content: center;
+            align-items: center;
+        }
+
+        nav ol li {
+            display: flex;
+            margin-right: 20px;
+            background: rgb(172, 156, 189);
+            padding: 2px 50px 1px 1px;
+            font-size: x-small;
+            border-radius: 20px;
+            display: flex;
+            overflow: hidden;
+            cursor: pointer;
+
+
+
+
+
+        }
+
+        nav ol li a {
+            text-decoration: none;
+            color: black;
+            font-weight: bold;
+
+        }
+
+        .tt {
+            font-family: 'Arial', sans-serif;
+            font-size: 36px;
+            color: black;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+            text-transform: uppercase;
+
+        }
+    </style>
+</head>
+<header>
+    <h1 class="tt">my portfolio</h1>
+    <nav id="nav">
+        <ol id="hide">
+            <li><a href="#home">home</a></li>
+            <li><a href="#about">about</a></li>
+            <li><a href="#more">more</a></li>
+            <li><a href="#contact">contact</a></li>
+        </ol>
+    </nav>
+
+</header>
+
+<body>
+
+    <h1>Welcome to My Portfolio</h1>
+    <input type="search" placeholder="Search...">
+    <button id="search">search</button>
+    <section id="about">
+        <div id="home">
+            <h1>Home</h1>
+            <p>This is the home section of my portfolio. Here you can find an overview of my work and achievements.</p>
+            <button id="learnmore">Learn More</button>
+
+
+        </div>
+        <div id="about">
+            <h1>About </h1>
+            <p>This is the about section of my portfolio. Here you can find more information about me, my background,
+                and my skills.</p>
+
+
+
+        </div>
+        <div id="more">
+            <h1>More</h1>
+            <div id="log in">
+                <h2>Log In</h2>
+                <p>To access more features and details about
+                    my projects, please log in to your account.
+                </p>
+                <div id="log in">
+                    <form action="#">
+                        <input type="text" placeholder="Username" required>
+                        <input type="password" placeholder="password" required>
+                        <input type="checkbox" required>
+                        <label for="checkbox" style="text-align: center; display: block; ">Remember me?
+                        </label>
+                        <button id="loginbutton">Log In</button>
+                        <a href="#">forget password? </a>
+                    </form>
+                </div>
+                <details>
+                    <summary>Sign In</summary>
+                    <div id="signin">
+                        <form action="sign in">
+                            <h2>sign in</h2>
+                            <input type="text" placeholder="Username" required>
+                            <input type="password" placeholder="password" required>
+                            <input type="password" placeholder="confirm password" required>
+                            <input type="checkbox" required>
+                            <p>Agree to Terms and Conditions</p>
+                            <button id="signinbutton">Sign In</button>
+                        </form>
+                    </div>
+                </details>
+            </div>
+            <p>This is the more section of my portfolio. Here you can find additional details about my projects and
+                experiences.</p>
+
+        </div>
+        <div id="contact">
+            <h1>contact</h1>
+            <ul style="text-decoration: none;
+             list-style-type: none;
+            padding: 1px 2px 3px ;
+            background: rgb(212, 140, 200);
+            padding: 10px;
+            border-radius: 10px;
+            justify-content: center;
+            align-items: center;">
+                <li><a href="#">whatsapp</a></li>
+                <li><a href="#">instagram</a></li>
+                <li><a href="#">facebook</a></li>
+                <li><a href="#">twitter</a></li>
+                <li><a href="#">tiktok</a></li>
+            </ul>
+        </div>
+
+    </section>
+
+
+
+    <script>
+        
+
+        document.querySelectorAll("nav ol li a").forEach(function (link) {
+            link.addEventListener("click", function (event) {
+                event.preventDefault();
+                var targetId = this.getAttribute("href").substring(1);
+                document.getElementById(targetId).scrollIntoView({ behavior: "smooth" });
+            });
+        });
+
+
+        document.getElementById("search").addEventListener("click", function () {
+            var searchTerm = document.querySelector("input[type='search']").value.toLowerCase();
+            var sections = document.querySelectorAll("section div");
+            sections.forEach(function (section) {
+                if (section.textContent.toLowerCase().includes(searchTerm)) {
+                    section.style.display = "block";
+                } else {
+                    section.style.display = "none";
+                }
+            });
+        });
+
+        document.getElementById("learnmore").addEventListener("click", function () {
+            document.getElementById("about").scrollIntoView({ behavior: "smooth" });
+        });
+
+        document.getElementById("loginbutton").addEventListener("click", function (event) {
+            event.preventDefault();
+            alert("Log In functionality is not implemented yet.");
+        });
+        document.getElementById("signinbutton").addEventListener("click", function (event) {
+            event.preventDefault();
+            alert("Sign In functionality is not implemented yet.");
+        });
+
+
+
+    </script>
+
+</body>
+<footer>
+    @2026| EDU PORTFOLIO @All rights reserved.
+</footer>
+
+</html>
