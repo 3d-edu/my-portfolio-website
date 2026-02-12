@@ -129,7 +129,7 @@
 
         nav ol {
             list-style-type: none;
-            padding: 1px 2px 3px ;
+            padding: 1px 2px 3px;
             background: yellow;
             padding: 10px;
             border-radius: 10px;
@@ -171,6 +171,72 @@
             text-transform: uppercase;
 
         }
+
+        h5 {
+            background: rgb(190, 241, 71);
+            text-align: center;
+            padding: 10px;
+            font-size: x-large;
+            text-transform: capitalize;
+            border-radius: 10px;
+            border: 2px solid rgb(3, 172, 149);
+        }
+
+        h5:hover {
+            background: rgb(3, 172, 149);
+            color: white;
+            border: 2px solid rgb(190, 241, 71);
+
+        }
+
+        .information {
+            background: rebeccapurple;
+            text-align: justify;
+            text-transform: capitalize;
+            padding: 2px 5px 2px;
+            border-radius: 10px;
+        }
+
+        table {
+            display: block;
+            padding: 7px;
+            background: white;
+
+            text-align: justify;
+            text-transform: capitalize;
+            word-spacing: 2px;
+            border-radius: 10px;
+        }
+
+        table:hover {
+            background: rgb(3, 172, 149);
+            color: white;
+        }
+
+        th {
+            background: rgb(190, 241, 71);
+            border: 2px solid rgb(3, 172, 149);
+            padding: 10px;
+            font-size: large;
+            border-radius: 10px;
+            justify-content: center;
+            align-items: center;
+
+        }
+
+        td {
+            border: 2px solid black;
+            border-radius: 5px;
+            margin: 0;
+            justify-content: center;
+            align-items: center;
+            text-align: justify;
+            padding: 0;
+            font-size: medium;
+            font-weight: bold;
+            font-style: normal;
+
+        }
     </style>
 </head>
 <header>
@@ -195,16 +261,84 @@
         <div id="home">
             <h1>Home</h1>
             <p>This is the home section of my portfolio. Here you can find an overview of my work and achievements.</p>
-            <button id="learnmore">Learn More</button>
+            <button>
+                <details>
+                    <summary>click to learn more</summary>
+                    <section id="learnmore">
+                        <div id="learnmore" class="information">
+                            <h5>information</h5>
+                            <table id="information table">
+                                <tr>
+                                    <th>educatio</th>
+                                    <th>institution and location</th>
+                                    <th>years</th>
+                                </tr>
+                                <tr>
+                                    <td>pregroup</td>
+                                    <td>joymony academy
+                                        location:kisii, kegogi
+                                    </td>
+                                    <td>from jan 2011- sep.2016</td>
+                                </tr>
+                                <tr>
+                                    <td>primary education</td>
+                                    <td>rirari f.p.f.k primary school
+                                        locaton:kisii, kegogi
+                                    </td>
+                                    <td>from sep.2016 - march.2021</td>
+                                </tr>
+                                <tr>
+                                    <td>secondary education</td>
+                                    <td>tambacha c.o.g mixed secondary school
+                                        locaton:kisii, kegogi
+                                    </td>
+                                    <td>from aug.2021-nov.2024</td>
+                                </tr>
+                                <tr>
+                                    <td>further education</td>
+                                    <td>rongo unveristiy
+                                        locaton:migori, rongo, kitere hills
+                                        <p>taking bs.computer scince</p>
+                                    </td>
+                                    <td>from aug.2025-curently</td>
+                                </tr>
 
+                            </table>
+                        </div>
+                        <div class="my background">
+                            <h5>my background</h5>
+                            <p>my background is a combination of my education, work experience
+                                and personal experiences that have shaped who I am today.
+                                it includes my upbringing, family, cultural influences and
+                                the various experiences that have contributed to my personal and professional
+                                development.
+                            </p>
+                        </div>
+                        <div class="my cv">
+                            <h5>my cv</h5>
+                            <p>my cv is a document that outlines my education, work experience, skills and achievements.
+                                it is used to apply for jobs and internships and it provides potential employers with an
+                                overview of my qualifications and suitability for a position.
+                            </p>
+                        </div>
 
+                        <div class="more">
+                            <h5>work exerince</h5>
+                            <p>my work experience includes any jobs, internships, or volunteer
+                                positions that I have held in the past.
+                                it may include part-time or full-time positions, as well as any relevant
+                                projects or freelance work that I have done.
+                            </p>
+                        </div>
+                    </section>
+                </details>
+            </button>
         </div>
+
         <div id="about">
             <h1>About </h1>
             <p>This is the about section of my portfolio. Here you can find more information about me, my background,
                 and my skills.</p>
-
-
 
         </div>
         <div id="more">
@@ -214,32 +348,35 @@
                 <p>To access more features and details about
                     my projects, please log in to your account.
                 </p>
-                <div id="log in">
-                    <form action="#">
-                        <input type="text" placeholder="Username" required>
-                        <input type="password" placeholder="password" required>
-                        <input type="checkbox" required>
-                        <label for="checkbox" style="text-align: center; display: block; ">Remember me?
-                        </label>
-                        <button id="loginbutton">Log In</button>
-                        <a href="#">forget password? </a>
-                    </form>
-                </div>
                 <details>
-                    <summary>Sign In</summary>
-                    <div id="signin">
-                        <form action="sign in">
-                            <h2>sign in</h2>
+                    <summary>click to log in or sign up</summary>
+                    <div id="log in">
+                        <form action="#">
                             <input type="text" placeholder="Username" required>
                             <input type="password" placeholder="password" required>
-                            <input type="password" placeholder="confirm password" required>
                             <input type="checkbox" required>
-                            <p>Agree to Terms and Conditions</p>
-                            <button id="signinbutton">Sign In</button>
+                            <label for="checkbox" style="text-align: center; display: block; ">Remember me?
+                            </label>
+                            <button id="loginbutton">Log In</button>
+                            <a href="#">forget password? </a>
                         </form>
                     </div>
-                </details>
+                    <details>
+                        <summary>Sign In</summary>
+                        <div id="signin">
+                            <form action="sign in">
+                                <h2>sign in</h2>
+                                <input type="text" placeholder="Username" required>
+                                <input type="password" placeholder="password" required>
+                                <input type="password" placeholder="confirm password" required>
+                                <input type="checkbox" required>
+                                <p>Agree to Terms and Conditions</p>
+                                <button id="signinbutton">Sign In</button>
+                            </form>
+                        </div>
+                    </details>
             </div>
+            </details>
             <p>This is the more section of my portfolio. Here you can find additional details about my projects and
                 experiences.</p>
 
@@ -267,7 +404,14 @@
 
 
     <script>
-        
+        function learnmore() {
+            document.getElementById("learnmore").scrollIntoView({ behavior: "smooth" });
+        }
+        const learnMoreButton = document.getElementById("learnmore");
+        learnMoreButton.addEventListener("click", learnmore);
+
+
+
 
         document.querySelectorAll("nav ol li a").forEach(function (link) {
             link.addEventListener("click", function (event) {
@@ -313,3 +457,7 @@
 </footer>
 
 </html>
+
+
+
+
