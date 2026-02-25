@@ -13,13 +13,30 @@
             text-align: center;
             border: 2px solid black;
             border-radius: 20px;
+            /* If your header is 70px tall */
+            padding-top: 300px;
+        }
+
+
+
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+
+            padding: 0;
+
 
         }
+
 
         html {
             scroll-behavior: smooth;
-
+            scroll-padding-top: 70px;
+            /* Matches your header height */
         }
+
+
 
         div {
             background-color: lightgray;
@@ -58,6 +75,7 @@
             border-radius: 220px;
 
 
+
         }
 
         input {
@@ -66,6 +84,7 @@
             border: 2px solid black;
             border-radius: 5px;
             display: block;
+
         }
 
         button {
@@ -199,12 +218,12 @@
 
         table {
             display: block;
+            width: 100%;
             padding: 7px;
             background: white;
-            width:100%;
             text-align: justify;
             text-transform: capitalize;
-            word-spacing: 2px;
+            word-spacing: 1px;
             border-radius: 10px;
         }
 
@@ -235,11 +254,10 @@
             font-size: medium;
             font-weight: bold;
             font-style: normal;
-
         }
     </style>
 </head>
-<header>
+<header class="navbar">
     <h1 class="tt">my portfolio</h1>
     <nav id="nav">
         <ol id="hide">
@@ -249,109 +267,117 @@
             <li><a href="#contact">contact</a></li>
         </ol>
     </nav>
-
+    <input style="width: 90%; 
+    padding:10px; 
+    color:rebeccapurple;
+    justify-content: center;
+    margin: 10px;
+    font-size: larger;
+    align-items: center;
+    text-align: center;
+    
+    " type="search" placeholder="Search...">
+    <button style="width: 80%; " id="search">search</button>
+    <section id="about">
 </header>
 
 <body>
+    <div id="home">
+        <h1>Home</h1>
+        <h1>Welcome to My Portfolio</h1>
+        <p>This is the home section of my portfolio. Here you can find an overview of my work and achievements.</p>
+        <button onclick="show()">
+            <details>
+                <summary>click to learn more</summary>
+                <section id="learnmore">
+                    <div id="learnmore" class="information">
+                        <h5>information</h5>
+                        <table id="information table">
+                            <tr>
+                                <th>educatio</th>
+                                <th>institution and location</th>
+                                <th>years</th>
+                            </tr>
+                            <tr>
+                                <td>pregroup</td>
+                                <td>joymony academy
+                                    location:kisii, kegogi
+                                </td>
+                                <td>from jan 2011- sep.2016</td>
+                            </tr>
+                            <tr>
+                                <td>primary education</td>
+                                <td>rirari f.p.f.k primary school
+                                    locaton:kisii, kegogi
+                                </td>
+                                <td>from sep.2016 - march.2021</td>
+                            </tr>
+                            <tr>
+                                <td>secondary education</td>
+                                <td>tambacha c.o.g mixed secondary school
+                                    locaton:kisii, kegogi
+                                </td>
+                                <td>from aug.2021-nov.2024</td>
+                            </tr>
+                            <tr>
+                                <td>further education</td>
+                                <td>rongo unveristiy
+                                    locaton:migori, rongo, kitere hills
+                                    <p>taking bs.computer scince</p>
+                                </td>
+                                <td>from aug.2025-curently</td>
+                            </tr>
 
-    <h1>Welcome to My Portfolio</h1>
-    <input type="search" placeholder="Search...">
-    <button id="search">search</button>
-    <section id="about">
-        <div id="home">
-            <h1>Home</h1>
-            <p>This is the home section of my portfolio. Here you can find an overview of my work and achievements.</p>
-            <button>
-                <details>
-                    <summary>click to learn more</summary>
-                    <section id="learnmore">
-                        <div id="learnmore" class="information">
-                            <h5>information</h5>
-                            <table id="information table">
-                                <tr>
-                                    <th>educatio</th>
-                                    <th>institution and location</th>
-                                    <th>years</th>
-                                </tr>
-                                <tr>
-                                    <td>pregroup</td>
-                                    <td>joymony academy
-                                        location:kisii, kegogi
-                                    </td>
-                                    <td>from jan 2011- sep.2016</td>
-                                </tr>
-                                <tr>
-                                    <td>primary education</td>
-                                    <td>rirari f.p.f.k primary school
-                                        locaton:kisii, kegogi
-                                    </td>
-                                    <td>from sep.2016 - march.2021</td>
-                                </tr>
-                                <tr>
-                                    <td>secondary education</td>
-                                    <td>tambacha c.o.g mixed secondary school
-                                        locaton:kisii, kegogi
-                                    </td>
-                                    <td>from aug.2021-nov.2024</td>
-                                </tr>
-                                <tr>
-                                    <td>further education</td>
-                                    <td>rongo unveristiy
-                                        locaton:migori, rongo, kitere hills
-                                        <p>taking bs.computer scince</p>
-                                    </td>
-                                    <td>from aug.2025-curently</td>
-                                </tr>
+                        </table>
+                    </div>
+                    <div class="my background">
+                        <h5>my background</h5>
+                        <p>my background is a combination of my education, work experience
+                            and personal experiences that have shaped who I am today.
+                            it includes my upbringing, family, cultural influences and
+                            the various experiences that have contributed to my personal and professional
+                            development.
+                        </p>
+                    </div>
+                    <div class="my cv">
+                        <h5>my cv</h5>
+                        <p>my cv is a document that outlines my education, work experience, skills and achievements.
+                            it is used to apply for jobs and internships and it provides potential employers with an
+                            overview of my qualifications and suitability for a position.
+                        </p>
+                    </div>
 
-                            </table>
-                        </div>
-                        <div class="my background">
-                            <h5>my background</h5>
-                            <p>my background is a combination of my education, work experience
-                                and personal experiences that have shaped who I am today.
-                                it includes my upbringing, family, cultural influences and
-                                the various experiences that have contributed to my personal and professional
-                                development.
-                            </p>
-                        </div>
-                        <div class="my cv">
-                            <h5>my cv</h5>
-                            <p>my cv is a document that outlines my education, work experience, skills and achievements.
-                                it is used to apply for jobs and internships and it provides potential employers with an
-                                overview of my qualifications and suitability for a position.
-                            </p>
-                        </div>
+                    <div class="more">
+                        <h5>work exerince</h5>
+                        <p>my work experience includes any jobs, internships, or volunteer
+                            positions that I have held in the past.
+                            it may include part-time or full-time positions, as well as any relevant
+                            projects or freelance work that I have done.
+                        </p>
+                    </div>
+                </section>
+            </details>
+        </button>
+    </div>
 
-                        <div class="more">
-                            <h5>work exerince</h5>
-                            <p>my work experience includes any jobs, internships, or volunteer
-                                positions that I have held in the past.
-                                it may include part-time or full-time positions, as well as any relevant
-                                projects or freelance work that I have done.
-                            </p>
-                        </div>
-                    </section>
-                </details>
-            </button>
-        </div>
+    <div id="about">
+        <h1>About </h1>
+        <p>This is the about section of my portfolio. Here you can find more information about me, my background,
+            and my skills.</p>
 
-        <div id="about">
-            <h1>About </h1>
-            <p>This is the about section of my portfolio. Here you can find more information about me, my background,
-                and my skills.</p>
-
-        </div>
-        <div id="more">
-            <h1>More</h1>
-            <div id="log in">
-                <h2>Log In</h2>
-                <p>To access more features and details about
-                    my projects, please log in to your account.
-                </p>
-                <details>
-                    <summary>click to log in or sign up</summary>
-                    <div id="log in">
-                        <form action="#">
+    </div>
+    <div id="more">
+        <h1>More</h1>
+        <div id="log in">
+            <h2>Log In</h2>
+            <p>To access more features and details about
+                my projects, please log in to your account.
+            </p>
+            <details>
+                <summary>click to log in or sign up</summary>
+                <div id="log in">
+                    <form action="#">
+                        <form id="form">
                             <input type="text" placeholder="Username" required>
                             <input type="password" placeholder="password" required>
                             <input type="checkbox" required>
@@ -360,45 +386,51 @@
                             <button id="loginbutton">Log In</button>
                             <a href="#">forget password? </a>
                         </form>
-                    </div>
-                    <details>
-                        <summary>Sign In</summary>
-                        <div id="signin">
-                            <form action="sign in">
-                                <h2>sign in</h2>
-                                <input type="text" placeholder="Username" required>
-                                <input type="password" placeholder="password" required>
-                                <input type="password" placeholder="confirm password" required>
+                </div>
+                <details>
+                    <summary>Sign In</summary>
+                    <div id="signin">
+                        <form action="sign in">
+                            <h2>sign in</h2>
+                            <form id="form">
+                                <input type="text" id="username" placeholder="Username" required>
+                                <input type="text" id="email" placeholder="Email">
+                                <input type="password" id="password" placeholder="password" required>
+                                <input type="password" id="password" placeholder="confirm password" required>
                                 <input type="checkbox" required>
                                 <p>Agree to Terms and Conditions</p>
-                                <button id="signinbutton">Sign In</button>
+                                <p id="error" style="color:red;"></p>
+                                <p id="success" style="color:green;"></p>
+                                <button id="signinbutton" type="submit">Register</button>
                             </form>
-                        </div>
-                    </details>
-            </div>
-            </details>
-            <p>This is the more section of my portfolio. Here you can find additional details about my projects and
-                experiences.</p>
+                        </form>
+                    </div>
+                </details>
+        </div>
+        </details>
+        <p>This is the more section of my portfolio. Here you can find additional details about my projects and
+            experiences.</p>
 
-        </div>
-        <div id="contact">
-            <h1>contact</h1>
-            <ul style="text-decoration: none;
-             list-style-type: none;
-            padding: 1px 2px 3px ;
-            background: rgb(212, 140, 200);
-            padding: 10px;
-            border-radius: 10px;
-            justify-content: center;
-            align-items: center;">
-                <li><a href="#">whatsapp</a></li>
-                <li><a href="https://www.instagram.com/micedujrn?igsh=cDZ4MnZteTc3djhx">Instagram</a></li>
-                <li><a href="https://www.facebook.com/profile.php?id=61578212519644">facebook</a></li>
-                <li><a href="#">twitter</a></li>
-                <li><a href="#">tiktok</a></li>
-                <li><a href="edujrnmic@gmail.com">email</a></li>
-            </ul>
-        </div>
+    </div>
+
+    <div id="contact">
+        <h1>contact</h1>
+        <ul style="text-decoration: none;
+                     list-style-type: none;
+                    padding: 1px 2px 3px ;
+                    background: rgb(212, 140, 200);
+                    padding: 10px;
+                    border-radius: 10px;
+                    justify-content: center;
+                    align-items: center;">
+            <li><a href="#">whatsapp</a></li>
+            <li><a href="https://www.instagram.com/micedujrn?igsh=cDZ4MnZteTc3djhx">Instagram</a></li>
+            <li><a href="https://www.facebook.com/profile.php?id=61578212519644">facebook</a></li>
+            <li><a href="#">twitter</a></li>
+            <li><a href="https://www.tiktok.com/@edujrn254?_r=1&_t=ZS-94DLwazFuQ3">tiktok</a></li>
+            <li><a href="email">edujrnmic@gmail.com</a></li>
+        </ul>
+    </div>
 
     </section>
 
@@ -439,14 +471,44 @@
             document.getElementById("about").scrollIntoView({ behavior: "smooth" });
         });
 
+
         document.getElementById("loginbutton").addEventListener("click", function (event) {
             event.preventDefault();
             alert("Log In functionality is not implemented yet.");
         });
         document.getElementById("signinbutton").addEventListener("click", function (event) {
             event.preventDefault();
-            alert("Sign In functionality is not implemented yet.");
+
         });
+
+
+        const form = document.getElementById("form");
+        const error = document.getElementById("error");
+        const success = document.getElementById("success");
+        form.addEventListener("submit", (e) => {
+            e.preventDefault();
+            const username = document.getElementById("username").value.trim();
+            const email = document.getElementById("email").value.trim();
+            const password = document.getElementById("password").value.trim();
+            error.textContent = "";
+            success.textContent = "";
+            if (username === "") {
+                error.textContent = "Username is required";
+                return;
+            }
+            if (!email.includes("@")) {
+                error.textContent = "Enter valid email";
+                return;
+            }
+            if (password.length < 6) {
+                error.textContent = "Password must be at least 6 characters";
+                return;
+            }
+            success.textContent = "Registration successful!";
+            alert("Sign In functionality is not implemented yet.");
+
+        });
+
 
 
 
@@ -458,8 +520,3 @@
 </footer>
 
 </html>
-
-
-
-
-
