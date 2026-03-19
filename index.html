@@ -13,8 +13,16 @@
             text-align: center;
             border: 2px solid black;
             border-radius: 20px;
-           
             padding-top: 300px;
+        }
+         @media (min-width: 768px) {
+            body {
+                font-size: 18px;
+            }
+
+            .container {
+                display: flex;
+            }
         }
 
 
@@ -168,11 +176,7 @@
             display: flex;
             overflow: hidden;
             cursor: pointer;
-
-
-
-
-
+            height: 20px;
         }
 
         nav ol li a {
@@ -188,7 +192,7 @@
             color: black;
             text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
             text-transform: uppercase;
-      
+            height: 10px;
 
         }
 
@@ -256,6 +260,13 @@
             font-weight: bold;
             font-style: normal;
         }
+        .search {
+            background-color: aqua;
+            border: none;
+            display: inline-flex;
+            width: 80%;
+            height: 20px;
+        }
     </style>
 </head>
 <header class="navbar">
@@ -268,17 +279,11 @@
             <li><a href="#contact">contact</a></li>
         </ol>
     </nav>
-    <input style="width: 90%; 
-    padding:10px; 
-    color:rebeccapurple;
-    justify-content: center;
-    margin: 10px;
-    font-size: small;
-    align-items: center;
-    text-align: center;
-    
-    " type="search" placeholder="Search...">
-    <button style="width: 80%; " id="search">search</button>
+    <div class="search">
+    <input style="width: 90%;"
+        type="search" placeholder="Search...">
+    <button style="width: 20%; " id="search">search</button>
+         </div>
     <section id="about">
 </header>
 
@@ -424,19 +429,13 @@
                     border-radius: 10px;
                     justify-content: center;
                     align-items: center;">
-            <li><a href="#">whatsapp</a></li>
             <li><a href="https://www.instagram.com/micedujrn?igsh=cDZ4MnZteTc3djhx">Instagram</a></li>
             <li><a href="https://www.facebook.com/profile.php?id=61578212519644">facebook</a></li>
-            <li><a href="#">twitter</a></li>
             <li><a href="https://www.tiktok.com/@edujrn254?_r=1&_t=ZS-94DLwazFuQ3">tiktok</a></li>
-<li> <a href= " https://www.youtube.com/@EdwardOmariba-r8c">YouTube</a> </li>
-            <li><a href="email">edujrnmic@gmail.com</a></li>
+            <li> <a href= " https://www.youtube.com/@EdwardOmariba-r8c">YouTube</a> </li> 
         </ul>
     </div>
-
-    </section>
-
-
+  </section>
 
     <script>
         function learnmore() {
