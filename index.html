@@ -4,439 +4,261 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>my portifolia</title>
+    <title>my portfolio</title>
     <style>
         body {
-            color: black;
             padding: 20px;
-            background: grey;
-            text-align: center;
-            border: 2px solid black;
-            border-radius: 20px;
-            padding-top: 300px;
+            background: rgb(250, 233, 233);
+            padding-top: 290px;
+            justify-content: center;
         }
-         @media (min-width: 768px) {
-            body {
-                font-size: 18px;
-            }
-
-            .container {
-                display: flex;
-            }
-        }
-
-
-
-        .navbar {
-            position: fixed;
-            top: 0;
-            left: 0;
-            font-size: small;
-            padding: 0;
-
-
-        }
-
 
         html {
             scroll-behavior: smooth;
-            scroll-padding-top: 70px;
-            /* Matches your header height */
+            scroll-padding-top: 280px;
         }
 
-
-
-        div {
-            background-color: lightgray;
-            padding: 20px;
-            margin-bottom: 20px;
-            border: 2px solid black;
-            border-radius: 10px;
-            justify-content: center;
-            text-align: center;
-            align-items: center;
-            display: block;
-
-
-        }
-
-        .contact ul {
-            list-style-type: none;
-            padding: 0;
-        }
-
-        .contact ul li {
-            margin-bottom: 10px;
-        }
-
-        .contact ul li a {
-            text-decoration: none;
-            color: black;
-            font-weight: bold;
-        }
-
-        h1 {
-            display: block;
-            background: white;
+        header {
             width: 100%;
             text-align: center;
-            border-radius: 220px;
+            top: 0;
+            margin: 0;
+            position: fixed;
+            background-color: blueviolet;
+            text-align: center;
+            justify-content: center;
+            padding: 0;
+            height: 25vh;
+        }
 
+        nav {
+            display: flex;
+            padding: 0;
+            text-align: center;
+            font-size: 1.9rem;
+            gap: 30px;
+        }
 
+        a {
+            background: rgb(152, 189, 219);
+            overflow: hidden;
+            cursor: pointer;
+            text-transform: capitalize;
+            text-decoration: none;
+            color: rgb(12, 12, 12);
+            padding: 5px;
+            border-radius: 20px;
+            justify-content: end;
+        }
+
+        nav a:hover {
+            text-decoration: none;
+            color: white;
+            font-weight: bold;
+            background: gold;
+
+        }
+
+        .search {
+            padding: 10px;
+            border-radius: 5px;
+            display: flex;
+            width: 100%;
 
         }
 
         input {
-            padding: 10px;
-            width: 100%;
-            border: 2px solid black;
-            border-radius: 5px;
-            display: block;
-
+            padding: 15px;
+            border-radius: 20px;
+            width: 70%;
+            font-size: 1.3rem;
         }
 
         button {
-            padding: 10px 20px;
-            background-color: black;
-            color: white;
-            border: none;
-            border-radius: 20px;
-            width: 100%;
+            padding: 5px;
+            border-radius: 10px;
+            width: 20%;
+            text-transform: capitalize;
+            background: rgb(211, 250, 217);
+            font-size: 1.5rem;
+        }
+
+        header h1 {
+            padding-top: 0;
+            font-size: 2.9rem;
+            text-align: justify;
+            margin: 0;
+            text-transform: capitalize;
+            text-align: justify;
 
         }
 
-
-        form {
-            display: block;
-            text-align: center;
-            align-items: center;
-
+        h1 {
+            background-color: blueviolet;
+            padding: 15px;
+            border-radius: 20pc;
         }
 
         h2 {
-            text-align: center;
-            text-transform: capitalize;
-
-        }
-
-        #signin {
-            display: block;
-            text-align: center;
-            align-items: center;
-            background: rebeccapurple;
-        }
-
-        details {
-            display: block;
-            text-decoration: none;
-            text-align: center;
-            align-items: center;
-            background: rebeccapurple;
+            background-color: blue;
             padding: 10px;
-            border-radius: 10px;
-            text-align: center;
-            text-transform: capitalize;
-        }
-
-        a {
-            text-decoration: none;
-            font-size: x-large;
-            text-transform: capitalize;
-        }
-
-        header {
-
-            align-items: center;
-            background: white;
-            padding: 10px;
-            width: 100%;
             border-radius: 20px;
-
-        }
-
-        nav ol {
-            list-style-type: none;
-            padding: 1px 2px 3px;
-            background: yellow;
-            padding: 10px;
-            border-radius: 10px;
-            display: inline-flex;
-            width: 90%;
-            justify-content: center;
-            align-items: center;
-        }
-
-        nav ol li {
-            display: flex;
-            margin-right: 20px;
-            background: rgb(172, 156, 189);
-            padding: 2px 50px 1px 1px;
-            font-size: x-small;
-            border-radius: 20px;
-            display: flex;
-            overflow: hidden;
-            cursor: pointer;
-            height: 20px;
-        }
-
-        nav ol li a {
-            text-decoration: none;
-            color: black;
-            font-weight: bold;
-
-        }
-
-        .tt {
-            font-family: 'Arial', sans-serif;
-            font-size: small;
-            color: black;
-            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
-            text-transform: uppercase;
-            height: 10px;
-
         }
 
         h5 {
-            background: rgb(190, 241, 71);
+            background-color: chocolate;
             text-align: center;
-            padding: 10px;
-            font-size: x-large;
+            border-radius: 20pc;
+            padding: 15px;
             text-transform: capitalize;
-            border-radius: 10px;
-            border: 2px solid rgb(3, 172, 149);
-        }
 
-        h5:hover {
-            background: rgb(3, 172, 149);
-            color: white;
-            border: 2px solid rgb(190, 241, 71);
-
-        }
-
-        .information {
-            background: rebeccapurple;
-            text-align: justify;
-            text-transform: capitalize;
-            padding: 2px 5px 2px;
-            border-radius: 10px;
         }
 
         table {
-            display: block;
-            width: 100%;
-            padding: 7px;
-            background: white;
-            text-align: justify;
+            background-color: aqua;
+            padding: 15px;
+            justify-content: center;
+            text-align: center;
             text-transform: capitalize;
-            word-spacing: 1px;
-            border-radius: 10px;
-        }
-
-        table:hover {
-            background: rgb(3, 172, 149);
-            color: white;
+            border-radius: 20px;
+            border-left: 9px solid red;
+            border-right: 9px solid black;
+            border-top: 2px solid maroon;
         }
 
         th {
-            background: rgb(190, 241, 71);
-            border: 2px solid rgb(3, 172, 149);
+            background-color: rgb(224, 247, 224);
             padding: 10px;
-            font-size: large;
-            border-radius: 10px;
+            border-radius: 20px;
+            font-size: 1.2rem;
+        }
+
+        tr {
+            background-color: rgb(117, 209, 13);
+            font-size: 1.3rem;
+            padding: 15px;
+            gap: 10px;
+        }
+
+        div {
+            background-color: rgb(219, 219, 219);
             justify-content: center;
-            align-items: center;
+            padding: 50px;
+            text-align: center;
+            border-radius: 20px;
+            border-bottom-right-radius: 5pc;
+            border-top-left-radius: 4pc;
+            border-left: 20px solid pink;
+            border-right: 20px solid black;
+            text-transform: capitalize;
+
 
         }
 
-        td {
-            border: 2px solid black;
-            border-radius: 5px;
-            margin: 0;
-            justify-content: center;
-            align-items: center;
-            text-align: justify;
-            padding: 0;
-            font-size: medium;
-            font-weight: bold;
-            font-style: normal;
+        summary {
+            background-color: black;
+            padding: 15px;
+            color: white;
+            font-size: xx-large;
+            border-radius: 10pc;
         }
-        .search {
-            background-color: aqua;
-            border: none;
-            display: inline-flex;
-            width: 80%;
-            height: 20px;
+
+        #contact {
+            background-color: rgb(114, 90, 90);
+            color: white;
+            height: 60vh;
+            display: block;
+            gap: 50px;
+            padding: 20px;
+        }
+
+        #contact a {
+            background-color: grey;
+            padding: 15px;
+            display: block;
+            gap: 20px;
+            padding: 20px;
         }
     </style>
 </head>
-<header class="navbar">
-    <h1 class="tt">my portfolio</h1>
-    <nav id="nav">
-        <ol id="hide">
-            <li><a href="#home">home</a></li>
-            <li><a href="#about">about</a></li>
-            <li><a href="#more">more</a></li>
-            <li><a href="#contact">contact</a></li>
-        </ol>
+<header>
+    <h1> my portfolia</h1>
+    <nav>
+        <a href="#home">home</a>
+        <a href="#about">about</a>
+        <a href="#contact">contact</a>
     </nav>
-    <div class="search">
-    <input style="width: 90%;"
-        type="search" placeholder="Search...">
-    <button style="width: 20%; " id="search">search</button>
-         </div>
-    <section id="about">
+    <section class="search">
+        <input type="search" placeholder="Search...">
+        <button id="search">search</button>
+    </section>
 </header>
 
 <body>
     <div id="home">
         <h1>Home</h1>
-        <h1>Welcome to My Portfolio</h1>
-        <p>This is the home section of my portfolio. Here you can find an overview of my work and achievements.</p>
-        <button onclick="show()">
-            <details>
-                <summary>click to learn more</summary>
-                <section id="learnmore">
-                    <div id="learnmore" class="information">
-                        <h5>information</h5>
-                        <table id="information table">
-                            <tr>
-                                <th>educatio</th>
-                                <th>institution and location</th>
-                                <th>years</th>
-                            </tr>
-                            <tr>
-                                <td>pregroup</td>
-                                <td>joymony academy
-                                    location:kisii, kegogi
-                                </td>
-                                <td>from jan 2011- sep.2016</td>
-                            </tr>
-                            <tr>
-                                <td>primary education</td>
-                                <td>rirari f.p.f.k primary school
-                                    locaton:kisii, kegogi
-                                </td>
-                                <td>from sep.2016 - march.2021</td>
-                            </tr>
-                            <tr>
-                                <td>secondary education</td>
-                                <td>tambacha c.o.g mixed secondary school
-                                    locaton:kisii, kegogi
-                                </td>
-                                <td>from aug.2021-nov.2024</td>
-                            </tr>
-                            <tr>
-                                <td>further education</td>
-                                <td>rongo unveristiy
-                                    locaton:migori, rongo, kitere hills
-                                    <p>taking bs.computer scince</p>
-                                </td>
-                                <td>from aug.2025-curently</td>
-                            </tr>
-
-                        </table>
-                    </div>
-                    <div class="my background">
-                        <h5>my background</h5>
-                        <p>my background is a combination of my education, work experience
-                            and personal experiences that have shaped who I am today.
-                            it includes my upbringing, family, cultural influences and
-                            the various experiences that have contributed to my personal and professional
-                            development.
-                        </p>
-                    </div>
-                    <div class="my cv">
-                        <h5>my cv</h5>
-                        <p>my cv is a document that outlines my education, work experience, skills and achievements.
-                            it is used to apply for jobs and internships and it provides potential employers with an
-                            overview of my qualifications and suitability for a position.
-                        </p>
-                    </div>
-
-                    <div class="more">
-                        <h5>work exerince</h5>
-                        <p>my work experience includes any jobs, internships, or volunteer
-                            positions that I have held in the past.
-                            it may include part-time or full-time positions, as well as any relevant
-                            projects or freelance work that I have done.
-                        </p>
-                    </div>
-                </section>
-            </details>
-        </button>
+        <h2>Welcome to My Portfolio</h2>
+        <p>This is the home section of my portfolio.
+            Here you can find an overview of my work and achievements.
+        </p>
     </div>
 
     <div id="about">
         <h1>About </h1>
-        <p>This is the about section of my portfolio. Here you can find more information about me, my background,
-            and my skills.</p>
-
-    </div>
-    <div id="more">
-        <h1>More</h1>
-        <div id="log in">
-            <h2>Log In</h2>
-            <p>To access more features and details about
-                my projects, please log in to your account.
-            </p>
-            <details>
-                <summary>click to log in or sign up</summary>
-                <div id="log in">
-                    <form action="#">
-                        <form id="form">
-                            <input type="text" placeholder="Username" required>
-                            <input type="password" placeholder="password" required>
-                            <input type="checkbox" required>
-                            <label for="checkbox" style="text-align: center; display: block; ">Remember me?
-                            </label>
-                            <button id="loginbutton">Log In</button>
-                            <a href="#">forget password? </a>
-                        </form>
-                </div>
-                <details>
-                    <summary>Sign In</summary>
-                    <div id="signin">
-                        <form action="sign in">
-                            <h2>sign in</h2>
-                            <form id="form">
-                                <input type="text" id="username" placeholder="Username" required>
-                                <input type="text" id="email" placeholder="Email">
-                                <input type="password" id="password" placeholder="password" required>
-                                <input type="password" id="password" placeholder="confirm password" required>
-                                <input type="checkbox" required>
-                                <p>Agree to Terms and Conditions</p>
-                                <p id="error" style="color:red;"></p>
-                                <p id="success" style="color:green;"></p>
-                                <button id="signinbutton" type="submit">Register</button>
-                            </form>
-                        </form>
-                    </div>
-                </details>
-        </div>
+        <p>This is the about section of my portfolio.
+            Here you can find more information about me.This is the more section of my portfolio.
+        </p>
+        <details>
+            <summary>click to see more</summary>
+            <h5>information</h5>
+            <table id="information table">
+                <tr>
+                    <th>education</th>
+                    <th>institution and location</th>
+                    <th>years</th>
+                </tr>
+                <tr>
+                    <td>pregroup</td>
+                    <td>joymony academy
+                        location:kisii, kegogi
+                    </td>
+                    <td>from jan 2011- sep.2016</td>
+                </tr>
+                <tr>
+                    <td>primary education</td>
+                    <td>rirari f.p.f.k primary school
+                        locaton:kisii, kegogi
+                    </td>
+                    <td>from sep.2016 - march.2021</td>
+                </tr>
+                <tr>
+                    <td>secondary education</td>
+                    <td>tambacha c.o.g mixed secondary school
+                        locaton:kisii, kegogi
+                    </td>
+                    <td>from aug.2021-nov.2024</td>
+                </tr>
+                <tr>
+                    <td>further education</td>
+                    <td>rongo unveristiy
+                        locaton:migori, rongo, kitere hills
+                        <p>taking bs.computer scince</p>
+                    </td>
+                    <td>from aug.2025-curently</td>
+                </tr>
+            </table>
         </details>
-        <p>This is the more section of my portfolio. Here you can find additional details about my projects and
-            experiences.</p>
-
     </div>
 
     <div id="contact">
-        <h1>contact</h1>
-        <ul style="text-decoration: none;
-                     list-style-type: none;
-                    padding: 1px 2px 3px ;
-                    background: rgb(212, 140, 200);
-                    padding: 10px;
-                    border-radius: 10px;
-                    justify-content: center;
-                    align-items: center;">
-            <li><a href="https://www.instagram.com/micedujrn?igsh=cDZ4MnZteTc3djhx">Instagram</a></li>
-            <li><a href="https://www.facebook.com/profile.php?id=61578212519644">facebook</a></li>
-            <li><a href="https://www.tiktok.com/@edujrn254?_r=1&_t=ZS-94DLwazFuQ3">tiktok</a></li>
-            <li> <a href= " https://www.youtube.com/@EdwardOmariba-r8c">YouTube</a> </li> 
-        </ul>
-    </div>
-  </section>
+        <h1>contact me thro;</h1>
+        <a href="https://wa.me/245706407311" target="_blank">whatsapp</a>
+        <a href="https://www.instagram.com/micedujrn?igsh=cDZ4MnZteTc3djhx">Instagram</a>
+        <a href="https://www.facebook.com/profile.php?id=61578212519644">facebook</a>
+        <a href="https://www.tiktok.com/@edujrn254?_r=1&_t=ZS-94DLwazFuQ3">tiktok</a>
+        <a href="mailto:edujrnmic@gmail.com">email</a>
 
+    </div>
     <script>
         function learnmore() {
             document.getElementById("learnmore").scrollIntoView({ behavior: "smooth" });
@@ -468,53 +290,8 @@
             });
         });
 
-        document.getElementById("learnmore").addEventListener("click", function () {
-            document.getElementById("about").scrollIntoView({ behavior: "smooth" });
-        });
-
-
-        document.getElementById("loginbutton").addEventListener("click", function (event) {
-            event.preventDefault();
-            alert("Log In functionality is not implemented yet.");
-        });
-        document.getElementById("signinbutton").addEventListener("click", function (event) {
-            event.preventDefault();
-
-        });
-
-
-        const form = document.getElementById("form");
-        const error = document.getElementById("error");
-        const success = document.getElementById("success");
-        form.addEventListener("submit", (e) => {
-            e.preventDefault();
-            const username = document.getElementById("username").value.trim();
-            const email = document.getElementById("email").value.trim();
-            const password = document.getElementById("password").value.trim();
-            error.textContent = "";
-            success.textContent = "";
-            if (username === "") {
-                error.textContent = "Username is required";
-                return;
-            }
-            if (!email.includes("@")) {
-                error.textContent = "Enter valid email";
-                return;
-            }
-            if (password.length < 6) {
-                error.textContent = "Password must be at least 6 characters";
-                return;
-            }
-            success.textContent = "Registration successful!";
-            alert("Sign In functionality is not implemented yet.");
-
-        });
-
-
-
 
     </script>
-
 </body>
 <footer>
     @2026| EDU PORTFOLIO @All rights reserved.
