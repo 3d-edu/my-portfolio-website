@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -11,7 +12,21 @@
             --panel-bg: #222;
             --text-main: #ffffff;
             --border-radius: 15px;
+            --bg: #f4efe8;
+            --paper: #fbf7f1;
+            --ink: #1f1a17;
+            --muted: #6e6258;
+            --line: rgba(31, 26, 23, .12);
+            --accent: #8a5a44;
+            --accent-2: #c89c73;
+            --deep: #201713;
+            --gold: #d4b48c;
+            --shadow: 0 20px 60px rgba(32, 23, 19, .12);
+            --radius: 22px;
+            --max: 1240px;
+            --ease: cubic-bezier(.22, 1, .36, 1);
         }
+
         * {
             box-sizing: border-box;
             margin: 0;
@@ -29,7 +44,309 @@
             color: var(--text-main);
             transition: 0.3s;
             line-height: 1.6;
-            padding-top: 80px;
+            padding-top: 120px;
+        }
+
+        body.loading {
+            overflow: hidden;
+            height: 100vh;
+        }
+
+        img,
+        svg {
+            display: block;
+            max-width: 100%
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit
+        }
+
+        button {
+            font: inherit
+        }
+
+        .grain::before {
+            content: "";
+            position: fixed;
+            inset: 0;
+            pointer-events: none;
+            opacity: .08;
+            background-image:
+                radial-gradient(circle at 20% 20%, rgba(0, 0, 0, .12) 0.6px, transparent 0.8px),
+                radial-gradient(circle at 80% 60%, rgba(0, 0, 0, .08) 0.6px, transparent 0.9px),
+                radial-gradient(circle at 40% 80%, rgba(0, 0, 0, .06) 0.7px, transparent 1px);
+            background-size: 24px 24px, 36px 36px, 28px 28px;
+            mix-blend-mode: multiply;
+            z-index: 1;
+        }
+
+        .site {
+            position: relative;
+            z-index: 2;
+            opacity: 0;
+            transform: translateY(12px);
+            transition: opacity 1.2s var(--ease), transform 1.2s var(--ease);
+        }
+
+        body.loaded .site {
+            opacity: 1;
+            transform: none;
+        }
+
+        .container {
+            width: min(calc(100% - 2rem), var(--max));
+            margin-inline: auto;
+        }
+
+        /* Loader */
+        .loader-screen {
+            position: fixed;
+            inset: 0;
+            z-index: 9999;
+            background:
+                linear-gradient(135deg, rgba(255, 255, 255, .35), rgba(255, 255, 255, .05)),
+                linear-gradient(180deg, #231a15 0%, #1b1411 100%);
+            color: #f7efe6;
+            display: grid;
+            place-items: center;
+            overflow: hidden;
+            transition: opacity 1.2s var(--ease), visibility 1.2s var(--ease);
+        }
+
+        body.loaded .loader-screen {
+            opacity: 0;
+            visibility: hidden;
+        }
+
+        .loader-screen::before,
+        .loader-screen::after {
+            content: "";
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(10px);
+            opacity: .35;
+            animation: drift 16s linear infinite;
+        }
+
+        .loader-screen::before {
+            width: 42vw;
+            height: 42vw;
+            min-width: 300px;
+            min-height: 300px;
+            background: radial-gradient(circle, rgba(212, 180, 140, .35), transparent 60%);
+            top: -8%;
+            left: -10%;
+        }
+
+        .loader-screen::after {
+            width: 34vw;
+            height: 34vw;
+            min-width: 240px;
+            min-height: 240px;
+            background: radial-gradient(circle, rgba(138, 90, 68, .4), transparent 62%);
+            bottom: -12%;
+            right: -6%;
+            animation-direction: reverse;
+        }
+
+        @keyframes drift {
+            0% {
+                transform: translate(0, 0) scale(1)
+            }
+
+            50% {
+                transform: translate(24px, -18px) scale(1.05)
+            }
+
+            100% {
+                transform: translate(0, 0) scale(1)
+            }
+        }
+
+        .loader-wrap {
+            width: min(92vw, 760px);
+            text-align: center;
+            position: relative;
+            z-index: 2;
+            padding: 2rem;
+        }
+
+        .loader-kicker {
+            letter-spacing: .34em;
+            text-transform: uppercase;
+            font-size: .78rem;
+            color: rgba(247, 239, 230, .68);
+            margin-bottom: 1rem;
+        }
+
+        .loader-title {
+            font-family: "Cormorant Garamond", serif;
+            font-size: clamp(3rem, 8vw, 7rem);
+            line-height: .95;
+            font-weight: 600;
+            margin: 0 0 1rem;
+        }
+
+        .loader-sub {
+            width: min(100%, 560px);
+            margin: 0 auto 2rem;
+            color: rgba(247, 239, 230, .76);
+            font-size: clamp(.98rem, 1.6vw, 1.08rem);
+        }
+
+        .loader-orbit {
+            width: 180px;
+            height: 180px;
+            margin: 0 auto 2rem;
+            position: relative;
+        }
+
+        .loader-ring,
+        .loader-ring::before,
+        .loader-ring::after {
+            position: absolute;
+            inset: 0;
+            border-radius: 50%;
+            border: 1px solid rgba(255, 255, 255, .12);
+        }
+
+        .loader-ring {
+            animation: spin 9s linear infinite;
+        }
+
+        .loader-ring::before {
+            content: "";
+            inset: 14px;
+            border-color: rgba(212, 180, 140, .38);
+            animation: spinReverse 6s linear infinite;
+        }
+
+        .loader-ring::after {
+            content: "";
+            inset: 34px;
+            border-color: rgba(255, 255, 255, .2);
+            animation: spin 4.5s linear infinite;
+        }
+
+        .loader-core {
+            position: absolute;
+            inset: 50%;
+            width: 18px;
+            height: 18px;
+            margin: -9px;
+            border-radius: 50%;
+            background: radial-gradient(circle at 35% 35%, #fff, var(--gold) 45%, var(--accent) 100%);
+            box-shadow: 0 0 30px rgba(212, 180, 140, .6);
+            animation: pulse 2s ease-in-out infinite;
+        }
+
+        @keyframes spin {
+            to {
+                transform: rotate(360deg)
+            }
+        }
+
+        @keyframes spinReverse {
+            to {
+                transform: rotate(-360deg)
+            }
+        }
+
+        @keyframes pulse {
+
+            0%,
+            100% {
+                transform: scale(1);
+                opacity: 1
+            }
+
+            50% {
+                transform: scale(1.45);
+                opacity: .75
+            }
+        }
+
+        .progress-shell {
+            width: min(100%, 540px);
+            margin: 0 auto;
+            display: grid;
+            gap: .75rem;
+        }
+
+        .progress-meta {
+            display: flex;
+            justify-content: space-between;
+            gap: 1rem;
+            color: rgba(247, 239, 230, .72);
+            font-size: .88rem;
+        }
+
+        .progress-bar {
+            height: 10px;
+            border-radius: 999px;
+            background: rgba(255, 255, 255, .08);
+            overflow: hidden;
+            border: 1px solid rgba(255, 255, 255, .08);
+            box-shadow: inset 0 0 0 1px rgba(255, 255, 255, .04);
+        }
+
+        .progress-fill {
+            height: 100%;
+            width: 0%;
+            border-radius: inherit;
+            background:
+                linear-gradient(90deg, rgba(212, 180, 140, .85), rgba(255, 255, 255, .95), rgba(138, 90, 68, .85));
+            background-size: 200% 100%;
+            animation: shimmer 2.4s linear infinite;
+            transition: width .45s var(--ease);
+            box-shadow: 0 0 24px rgba(212, 180, 140, .28);
+        }
+
+        @keyframes shimmer {
+            0% {
+                background-position: 0% 50%
+            }
+
+            100% {
+                background-position: 200% 50%
+            }
+        }
+
+        .loader-skip {
+            margin-top: 1.25rem;
+            display: inline-flex;
+            align-items: center;
+            gap: .6rem;
+            padding: .85rem 1.15rem;
+            border-radius: 999px;
+            border: 1px solid rgba(255, 255, 255, .14);
+            background: rgba(255, 255, 255, .06);
+            color: #fff;
+            cursor: pointer;
+            transition: transform .35s var(--ease), background .35s var(--ease), border-color .35s var(--ease);
+            backdrop-filter: blur(8px);
+        }
+
+        .loader-skip:hover {
+            transform: translateY(-2px);
+            background: rgba(255, 255, 255, .11);
+            border-color: rgba(255, 255, 255, .24);
+        }
+
+        .brand-mark {
+            width: 42px;
+            height: 42px;
+            border-radius: 50%;
+            display: grid;
+            place-items: center;
+            background: linear-gradient(135deg, var(--deep), #46342d);
+            color: #fff;
+            box-shadow: var(--shadow);
+            font-family: "Cormorant Garamond", serif;
+            font-size: 1.25rem;
+            font-weight: 700;
         }
 
         body.light {
@@ -76,7 +393,9 @@
         }
 
 
-        .search{
+        .search {
+
+
             background-color: #e3168d;
             width: 100%;
             display: flex;
@@ -106,6 +425,7 @@
             margin: 0;
             text-transform: capitalize;
             text-align: justify;
+            display: flex;
 
         }
 
@@ -161,10 +481,11 @@
             gap: 10px;
         }
 
-        div {
+        #home,
+        #about {
             background-color: rgb(194, 230, 165);
             justify-content: center;
-            padding: 50px;
+            padding: 60px;
             text-align: center;
             border-radius: 20px;
             border-bottom-right-radius: 5pc;
@@ -174,8 +495,21 @@
             text-transform: capitalize;
             color: #111;
             gap: 20px;
+            height: 80dvh;
+        }
 
-
+        #contact {
+            background-color: rgb(115, 87, 148);
+            padding: 50px;
+            justify-content: center;
+            text-align: center;
+            border-radius: 20px;
+            border-bottom-right-radius: 5pc;
+            border-top-left-radius: 4pc;
+            border-left: 20px solid rgb(216, 207, 209);
+            border-right: 20px solid rgb(36, 34, 34);
+            text-transform: capitalize;
+            color: #030303;
         }
 
         summary {
@@ -189,14 +523,15 @@
         #contact {
             background-color: rgb(114, 90, 90);
             color: white;
-    
+
         }
-         #contact a {
+
+        #contact a {
             border-radius: 20px;
             background-color: #222;
             padding: 10px;
             text-decoration: none;
-            
+
         }
 
         #contact a:hover {
@@ -207,36 +542,284 @@
             text-decoration: none;
             color: chocolate;
             font-size: 1.2rem;
-            
+        }
+
+        /* Chatbot */
+        .chatbot {
+            position: fixed;
+            right: 1rem;
+            bottom: 1rem;
+            z-index: 60;
+        }
+
+        .chat-toggle {
+            width: 64px;
+            height: 64px;
+            border: none;
+            border-radius: 50%;
+            cursor: pointer;
+            display: grid;
+            place-items: center;
+            color: #fff;
+            background:
+                linear-gradient(135deg, var(--deep), #4b3831);
+            box-shadow: 0 18px 38px rgba(32, 23, 19, .28);
+            transition: transform .35s var(--ease), box-shadow .35s var(--ease);
+        }
+
+        .chat-toggle:hover {
+            transform: translateY(-4px) scale(1.03);
+            box-shadow: 0 24px 44px rgba(32, 23, 19, .34);
+        }
+
+        .chat-panel {
+            position: absolute;
+            right: 0;
+            bottom: 78px;
+            width: min(92vw, 360px);
+            height: 500px;
+            border-radius: 24px;
+            overflow: hidden;
+            background: rgba(251, 247, 241, .92);
+            border: 1px solid rgba(31, 26, 23, .1);
+            box-shadow: 0 30px 60px rgba(32, 23, 19, .2);
+            backdrop-filter: blur(18px);
+            display: grid;
+            grid-template-rows: auto 1fr auto;
+            transform-origin: bottom right;
+            transform: scale(.88) translateY(12px);
+            opacity: 0;
+            pointer-events: none;
+            transition: transform .35s var(--ease), opacity .35s var(--ease);
+        }
+
+        .chatbot.open .chat-panel {
+            transform: scale(1) translateY(0);
+            opacity: 1;
+            pointer-events: auto;
+        }
+
+        .chat-head {
+            padding: 1rem 1rem .9rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 1rem;
+            border-bottom: 1px solid rgba(31, 26, 23, .08);
+            background: linear-gradient(180deg, rgba(255, 255, 255, .7), rgba(255, 255, 255, .45));
+        }
+
+        .chat-head strong {
+            display: block;
+            font-size: 1rem;
+        }
+
+        .chat-head span {
+            color: var(--muted);
+            font-size: .82rem;
+        }
+
+        .chat-close {
+            border: none;
+            background: transparent;
+            font-size: 1.25rem;
+            cursor: pointer;
+            color: var(--muted);
+        }
+
+        .chat-messages {
+            padding: 1rem;
+            overflow: auto;
+            display: flex;
+            flex-direction: column;
+            gap: .75rem;
+        }
+
+        .bubble {
+            max-width: 85%;
+            padding: .8rem .9rem;
+            border-radius: 18px;
+            line-height: 1.55;
+            font-size: .94rem;
+        }
+
+        .bubble.bot {
+            align-self: flex-start;
+            background: #fff;
+            border: 1px solid rgba(31, 26, 23, .08);
+            color: #2d241f;
+        }
+
+        .bubble.user {
+            align-self: flex-end;
+            background: var(--deep);
+            color: #fff;
+        }
+
+        .chat-form {
+            display: grid;
+            grid-template-columns: 1fr auto;
+            gap: .7rem;
+            padding: 1rem;
+            border-top: 1px solid rgba(31, 26, 23, .08);
+            background: rgba(255, 255, 255, .55);
+        }
+
+        .chat-form input {
+            min-width: 0;
+            border: none;
+            outline: none;
+            border-radius: 999px;
+            padding: 0 1rem;
+            min-height: 46px;
+            background: #fff;
+            border: 1px solid rgba(31, 26, 23, .08);
+            font-family: inherit;
+        }
+
+        .chat-form button {
+            min-height: 46px;
+            padding: 0 1rem;
+            border: none;
+            border-radius: 999px;
+            background: var(--deep);
+            color: #fff;
+            cursor: pointer;
+        }
+
+        /* Responsive */
+        @media (min-width: 760px) {
+            nav ul {
+                display: flex
+            }
+
+            .hero-grid {
+                grid-template-columns: 1.05fr .95fr
+            }
+
+            .about-layout {
+                grid-template-columns: 1.2fr .8fr
+            }
+
+            .work-grid {
+                grid-template-columns: 1.15fr .85fr
+            }
+
+            .project:nth-child(1) {
+                min-height: 460px
+            }
+
+            .project:nth-child(2) {
+                min-height: 220px
+            }
+
+            .project:nth-child(3) {
+                min-height: 220px
+            }
+
+            .project:nth-child(4) {
+                min-height: 300px;
+                grid-column: 1 / -1
+            }
+
+            .quotes {
+                grid-template-columns: repeat(3, 1fr)
+            }
+
+            .service-line {
+                grid-template-columns: .45fr 1fr;
+                align-items: start;
+            }
+
+            .section-head {
+                grid-template-columns: .9fr 1fr;
+                align-items: end;
+            }
+        }
+
+        @media (min-width: 1100px) {
+            .hero {
+                padding: 5rem 0 3rem
+            }
+
+            .services-layout {
+                gap: 0
+            }
+
+            .contact-wrap {
+                padding: 2.25rem
+            }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            * {
+                animation: none !important;
+                transition: none !important;
+                scroll-behavior: auto !important;
+            }
         }
     </style>
 </head>
 
+<body class="loading">
+    <div class="grain"></div>
+    <div class="loader-screen" aria-live="polite" aria-label="Loading portfolio experience">
+        <div class="loader-wrap">
+            <div class="loader-kicker">Preparing the experience</div>
+            <h1 class="loader-title">Portfolio<br>Loading</h1>
+            <p class="loader-sub">
+                A cinematic entrance for portfolio. 1-minute loading sequence, with
+                the option to skip anytime.
+            </p>
 
-<header>
-    <nav>
-        <h1>my portfolio</h1>
-        <button id="menu-btn" style="padding: 5px 15px; font-size: 1.5rem;">☰</button>
-        <ul id="nav-links" class="menu-list hidden">
-            <li><a href="#home">home</a> </li>
-            <li> <a href="#about">about</a></li>
-            <li> <a href="#contact">contact</a></li>
-        </ul>
+            <div class="loader-orbit" aria-hidden="true">
+                <div class="loader-ring"></div>
+                <div class="loader-core"></div>
+            </div>
 
-    </nav>
-    <section class="search">
-        <input type="search" placeholder="Search...">
-        <button id="search">search</button>
-        <section class="darkmode">
-            <label for="dark">light mode</label>
-            <input type="checkbox" id="theme-toggle">
+            <div class="progress-shell">
+                <div class="progress-meta">
+                    <span id="progressLabel">Calibrating visuals…</span>
+                    <strong id="progressText">0%</strong>
+                </div>
+                <div class="progress-bar" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
+                    <div class="progress-fill" id="progressFill"></div>
+                </div>
+            </div>
+
+            <button class="loader-skip" id="skipLoader" type="button" aria-label="Skip loading animation">
+                Skip intro
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                    <path d="M5 12h14M13 5l7 7-7 7" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"
+                        stroke-linejoin="round" />
+                </svg>
+            </button>
+        </div>
+    </div>
+    <header>
+        <nav>
+            <h1>
+                <a href="#home">
+                    <span class="brand-mark">E</span>
+                    <span>Edward Portfolio</span>
+                </a>
+            </h1>
+            <button id="menu-btn" style="padding: 5px 15px; font-size: 1.5rem;">☰</button>
+            <ul id="nav-links" class="menu-list hidden">
+                <li><a href="#home">home</a> </li>
+                <li> <a href="#about">about</a></li>
+                <li> <a href="#contact">contact</a></li>
+            </ul>
+        </nav>
+        <section class="search">
+            <input type="search" placeholder="Search...">
+            <button id="search">search</button>
+            <section class="darkmode">
+                <label for="dark">light mode</label>
+                <input type="checkbox" id="theme-toggle">
+            </section>
         </section>
-    </section>
-
-</header>
-
-<body>
-
+    </header>
     <div id="home">
         <h1>Home</h1>
         <h2>Welcome to My Portfolio</h2>
@@ -299,11 +882,42 @@
         <a href="https://www.facebook.com/profile.php?id=61578212519644">facebook</a>
         <a href="https://www.tiktok.com/@edujrn254?_r=1&_t=ZS-94DLwazFuQ3">tiktok</a>
         <a href="mailto:edujrnmic@gmail.com">email</a>
-
     </div>
+    <div class="chatbot" id="chatbot">
+        <div class="chat-panel" aria-label="Chat assistant">
+            <div class="chat-head">
+                <div>
+                    <strong>Portfolio Assistant</strong>
+                    <span>Ask about me</span>
+                </div>
+                <button class="chat-close" id="chatClose" aria-label="Close chat">×</button>
+            </div>
+
+            <div class="chat-messages" id="chatMessages">
+                <div class="bubble bot">Hello —
+                    I’m the portfolio assistant.
+                    Ask me</div>
+                <div class="bubble bot">Try: “How can I get started?”</div>
+            </div>
+
+            <form class="chat-form" id="chatForm">
+                <input type="text" id="chatInput" placeholder="Type your question..." aria-label="Type your message" />
+                <button type="submit">Send</button>
+            </form>
+        </div>
+
+        <button class="chat-toggle" id="chatToggle" aria-label="Open chatbot">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                <path
+                    d="M8 10h8M8 14h5M12 3c4.97 0 9 3.582 9 8s-4.03 8-9 8c-.912 0-1.793-.12-2.618-.344L4 21l1.42-4.26C4.52 15.307 3 13.263 3 11c0-4.418 4.03-8 9-8Z"
+                    stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" />
+            </svg>
+        </button>
+    </div>
+
+
+
     <script>
-
-
         // Toggle Navigation Menu
         const menuBtn = document.getElementById('menu-btn');
         const navLinks = document.getElementById('nav-links');
@@ -329,9 +943,155 @@
                 }
             });
         });
+        //loading animation
+        const body = document.body;
+        const progressFill = document.getElementById('progressFill');
+        const progressText = document.getElementById('progressText');
+        const progressLabel = document.getElementById('progressLabel');
+        const progressBar = document.querySelector('.progress-bar');
+        const skipLoader = document.getElementById('skipLoader');
 
+        const phases = [
+            { at: 8, text: 'Loading typography…' },
+            { at: 22, text: 'Composing layouts…' },
+            { at: 41, text: 'Refining motion…' },
+            { at: 63, text: 'Preparing portfolio sections…' },
+            { at: 82, text: 'Activating assistant…' },
+            { at: 98, text: 'Almost ready…' }
+        ];
 
+        const DEMO_DURATION = 60000; // 1 minute
+        let startedAt = Date.now();
+        let rafId;
+        let finished = false;
 
+        function finishLoading() {
+            if (finished) return;
+            finished = true;
+            cancelAnimationFrame(rafId);
+            progressFill.style.width = '100%';
+            progressText.textContent = '100%';
+            progressLabel.textContent = 'Experience ready';
+            progressBar.setAttribute('aria-valuenow', '100');
+            setTimeout(() => {
+                body.classList.remove('loading');
+                body.classList.add('loaded');
+            }, 450);
+        }
+
+        function updateLoader() {
+            const elapsed = Date.now() - startedAt;
+            const progress = Math.min(100, (elapsed / DEMO_DURATION) * 100);
+            const rounded = Math.floor(progress);
+
+            progressFill.style.width = progress + '%';
+            progressText.textContent = rounded + '%';
+            progressBar.setAttribute('aria-valuenow', rounded);
+
+            let currentText = phases[0].text;
+            for (const phase of phases) {
+                if (rounded >= phase.at) currentText = phase.text;
+            }
+            progressLabel.textContent = currentText;
+
+            if (progress >= 100) {
+                finishLoading();
+                return;
+            }
+            rafId = requestAnimationFrame(updateLoader);
+        }
+
+        skipLoader.addEventListener('click', finishLoading);
+        requestAnimationFrame(updateLoader);
+
+        // Reveal on scroll
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('is-visible');
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.16 });
+
+        document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+        // Chatbot
+        const chatbot = document.getElementById('chatbot');
+        const chatToggle = document.getElementById('chatToggle');
+        const chatClose = document.getElementById('chatClose');
+        const chatForm = document.getElementById('chatForm');
+        const chatInput = document.getElementById('chatInput');
+        const chatMessages = document.getElementById('chatMessages');
+
+        function appendMessage(text, role = 'bot') {
+            const msg = document.createElement('div');
+            msg.className = `bubble ${role}`;
+            msg.textContent = text;
+            chatMessages.appendChild(msg);
+            chatMessages.scrollTop = chatMessages.scrollHeight;
+        }
+
+        function getBotReply(input) {
+            const text = input.toLowerCase();
+
+            if (text.includes('service') || text.includes('offer')) {
+                return 'Services include portfolio websites, premium landing pages, UI systems, and frontend refinement for brands and professionals.';
+            }
+            if (text.includes('price') || text.includes('cost') || text.includes('budget')) {
+                return 'Pricing depends on scope, timeline, and complexity. A focused landing page usually starts lower than a full portfolio or brand experience.';
+            }
+            if (text.includes('timeline') || text.includes('how long')) {
+                return 'Typical timelines range from 1–2 weeks for focused pages and 3–6 weeks for larger portfolio or brand-led websites.';
+            }
+            if (text.includes('start') || text.includes('get started') || text.includes('begin')) {
+                return 'You can get started by sending a short project brief through email with your goals, references, timeline, and required pages.';
+            }
+            if (text.includes('availability') || text.includes('available')) {
+                return 'The designer is currently available for select freelance projects and collaborative engagements.';
+            }
+            if (text.includes('contact') || text.includes('email')) {
+                return 'You can reach out at hello@atelierportfolio.com for inquiries and project discussions.';
+            }
+            if (text.includes('hello') || text.includes('hi')) {
+                return 'Hello — happy to help. Ask me about services, pricing, timeline, or how to begin your project.';
+            }
+             if (text.includes('hello') || text.includes('mambo')) {
+                return 'Mambo — Poa . Kwa maswali zaidi tu chat whatsapp.';
+            }
+             if (text.includes('hello') || text.includes('vpy')) {
+                return 'Vpy— Uliza chochote na utapata majibu. Ama nitumie ujumbe whatsapp.';
+            }
+            return 'I can help with services, pricing, timelines, availability, and getting started. Try asking one of those.';
+        }
+
+        chatToggle.addEventListener('click', () => {
+            chatbot.classList.toggle('open');
+            if (chatbot.classList.contains('open')) {
+                setTimeout(() => chatInput.focus(), 220);
+            }
+        });
+
+        chatClose.addEventListener('click', () => {
+            chatbot.classList.remove('open');
+        });
+
+        chatForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            const value = chatInput.value.trim();
+            if (!value) return;
+
+            appendMessage(value, 'user');
+            chatInput.value = '';
+
+            setTimeout(() => {
+                appendMessage(getBotReply(value), 'bot');
+            }, 500);
+        });
+
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') chatbot.classList.remove('open');
+        });
     </script>
 </body>
 <footer>
