@@ -4,27 +4,21 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>my portfolio</title>
+    <title>Edward Portfolio</title>
     <style>
         :root {
             --primary-bg: #111;
-            --accent-pink: #e2168d;
             --panel-bg: #222;
             --text-main: #ffffff;
-            --border-radius: 15px;
-            --bg: #f4efe8;
-            --paper: #fbf7f1;
-            --ink: #1f1a17;
-            --muted: #6e6258;
-            --line: rgba(31, 26, 23, .12);
+            --accent-pink: #e2168d;
             --accent: #8a5a44;
             --accent-2: #c89c73;
             --deep: #201713;
             --gold: #d4b48c;
+            --muted: #6e6258;
             --shadow: 0 20px 60px rgba(32, 23, 19, .12);
-            --radius: 22px;
-            --max: 1240px;
             --ease: cubic-bezier(.22, 1, .36, 1);
+            --max-width: 1100px;
         }
 
         * {
@@ -35,16 +29,19 @@
 
         html {
             scroll-behavior: smooth;
-            scroll-padding-top: 180px;
-            font-family: 'Segoe UI', sans-serif;
+            scroll-padding-top: 140px;
+            font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
         }
 
         body {
             background-color: var(--primary-bg);
             color: var(--text-main);
-            transition: 0.3s;
+            transition: background-color 0.3s, color 0.3s;
             line-height: 1.6;
-            padding-top: 120px;
+            padding-top: 130px;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
         }
 
         body.loading {
@@ -52,21 +49,22 @@
             height: 100vh;
         }
 
-        img,
-        svg {
-            display: block;
-            max-width: 100%
+        body.light {
+            --primary-bg: #f4f4f4;
+            --text-main: #111;
+            --panel-bg: #ddd;
         }
 
         a {
             text-decoration: none;
-            color: inherit
+            color: inherit;
         }
 
         button {
-            font: inherit
+            font: inherit;
         }
 
+        /* Grain Overlay */
         .grain::before {
             content: "";
             position: fixed;
@@ -82,37 +80,252 @@
             z-index: 1;
         }
 
-        .site {
-            position: relative;
-            z-index: 2;
-            opacity: 0;
-            transform: translateY(12px);
-            transition: opacity 1.2s var(--ease), transform 1.2s var(--ease);
+        /* Responsive Navigation Header */
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 100;
+            background: cadetblue;
+            border-bottom: 3px solid magenta;
         }
 
-        body.loaded .site {
-            opacity: 1;
-            transform: none;
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 1rem;
+            max-width: var(--max-width);
+            margin: 0 auto;
         }
 
-        .container {
-            width: min(calc(100% - 2rem), var(--max));
-            margin-inline: auto;
+        .brand {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: clamp(1.1rem, 2vw, 1.5rem);
+            font-weight: bold;
         }
 
-        /* Loader */
+        .brand-mark {
+            display: grid;
+            place-items: center;
+            width: 38px;
+            height: 38px;
+            border-radius: 50%;
+            background: var(--deep);
+            color: #fff;
+            font-weight: bold;
+        }
+
+        #menu-btn {
+            display: none;
+            background: transparent;
+            border: none;
+            font-size: 1.8rem;
+            color: #000;
+            cursor: pointer;
+            padding: 5px 10px;
+        }
+
+        .menu-list {
+            list-style: none;
+            display: flex;
+            gap: 15px;
+        }
+
+        .menu-list a {
+            color: black;
+            font-weight: bold;
+            text-transform: uppercase;
+            background-color: #ddd;
+            padding: 8px 16px;
+            border-radius: 12px;
+            display: block;
+            transition: background-color 0.2s;
+        }
+
+        .menu-list a:hover {
+            background-color: #fff;
+        }
+
+        /* Search & Controls Toolbar */
+        .search-bar {
+            background-color: var(--accent-pink);
+            padding: 10px 1rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+
+        .search-wrapper {
+            display: flex;
+            gap: 8px;
+            flex: 1;
+            min-width: 250px;
+            max-width: 600px;
+        }
+
+        .search-bar input[type="search"] {
+            padding: 8px 15px;
+            border-radius: 20px;
+            border: none;
+            width: 100%;
+            font-size: 1rem;
+            outline: none;
+        }
+
+        .search-bar button {
+            padding: 6px 16px;
+            border-radius: 10px;
+            border: none;
+            background: rgb(148, 170, 3);
+            cursor: pointer;
+            font-weight: bold;
+            color: #fff;
+            white-space: nowrap;
+        }
+
+        .darkmode {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            color: #fff;
+            font-size: 0.9rem;
+            user-select: none;
+            cursor: pointer;
+        }
+
+        /* Main Responsive Container */
+        main {
+            width: min(92%, var(--max-width));
+            margin: 0 auto;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            gap: 30px;
+            padding-bottom: 40px;
+        }
+
+        /* Content Card Styling */
+        .content-section {
+            background-color: rgb(194, 230, 165);
+            padding: clamp(20px, 4vw, 40px);
+            text-align: center;
+            border-radius: 20px;
+            border-left: 12px solid pink;
+            border-right: 12px solid black;
+            color: #111;
+            width: 100%;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+        }
+
+        .content-section h1 {
+            font-size: clamp(1.8rem, 4vw, 2.8rem);
+            margin-bottom: 10px;
+        }
+
+        .content-section h2 {
+            font-size: clamp(1.2rem, 3vw, 1.8rem);
+            margin-bottom: 15px;
+            background-color: #2b52ff;
+            color: white;
+            padding: 8px;
+            border-radius: 12px;
+            display: inline-block;
+        }
+
+        /* Table Responsiveness */
+        .table-responsive {
+            width: 100%;
+            overflow-x: auto;
+            margin-top: 15px;
+            border-radius: 15px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: separate;
+            border-spacing: 0;
+            background-color: aqua;
+            padding: 10px;
+            border-radius: 15px;
+            border-left: 6px solid red;
+            border-right: 6px solid black;
+            border-top: 2px solid maroon;
+            color: #111;
+            min-width: 500px;
+        }
+
+        th {
+            background-color: rgb(224, 247, 224);
+            padding: 12px;
+            font-size: clamp(0.9rem, 2vw, 1.1rem);
+        }
+
+        td {
+            padding: 10px;
+            background-color: rgb(117, 209, 13);
+            font-size: clamp(0.85rem, 1.8vw, 1rem);
+        }
+
+        summary {
+            background-color: black;
+            padding: 12px 24px;
+            color: white;
+            font-size: clamp(1rem, 2vw, 1.2rem);
+            border-radius: 20px;
+            cursor: pointer;
+            margin: 20px auto 10px;
+            display: inline-block;
+        }
+
+        /* Contact Section Grid */
+        #contact {
+            background-color: rgb(114, 90, 90);
+            color: white;
+            border-left: 12px solid rgb(216, 207, 209);
+            border-right: 12px solid rgb(36, 34, 34);
+        }
+
+        .links-grid {
+            margin-top: 20px;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+            gap: 12px;
+            width: 100%;
+        }
+
+        .links-grid a {
+            border-radius: 15px;
+            background-color: #222;
+            color: #fff;
+            padding: 12px;
+            text-align: center;
+            font-weight: 600;
+            transition: all 0.2s ease;
+        }
+
+        .links-grid a:hover {
+            background-color: wheat;
+            color: chocolate;
+            transform: translateY(-2px);
+        }
+
+        /* Loader Screen */
         .loader-screen {
             position: fixed;
             inset: 0;
             z-index: 9999;
-            background:
-                linear-gradient(135deg, rgba(255, 255, 255, .35), rgba(255, 255, 255, .05)),
-                linear-gradient(180deg, #231a15 0%, #1b1411 100%);
+            background: linear-gradient(180deg, #231a15 0%, #1b1411 100%);
             color: #f7efe6;
             display: grid;
             place-items: center;
             overflow: hidden;
-            transition: opacity 1.2s var(--ease), visibility 1.2s var(--ease);
+            transition: opacity 0.6s var(--ease), visibility 0.6s var(--ease);
         }
 
         body.loaded .loader-screen {
@@ -120,642 +333,206 @@
             visibility: hidden;
         }
 
-        .loader-screen::before,
-        .loader-screen::after {
-            content: "";
-            position: absolute;
-            border-radius: 50%;
-            filter: blur(10px);
-            opacity: .35;
-            animation: drift 16s linear infinite;
-        }
-
-        .loader-screen::before {
-            width: 42vw;
-            height: 42vw;
-            min-width: 300px;
-            min-height: 300px;
-            background: radial-gradient(circle, rgba(212, 180, 140, .35), transparent 60%);
-            top: -8%;
-            left: -10%;
-        }
-
-        .loader-screen::after {
-            width: 34vw;
-            height: 34vw;
-            min-width: 240px;
-            min-height: 240px;
-            background: radial-gradient(circle, rgba(138, 90, 68, .4), transparent 62%);
-            bottom: -12%;
-            right: -6%;
-            animation-direction: reverse;
-        }
-
-        @keyframes drift {
-            0% {
-                transform: translate(0, 0) scale(1)
-            }
-
-            50% {
-                transform: translate(24px, -18px) scale(1.05)
-            }
-
-            100% {
-                transform: translate(0, 0) scale(1)
-            }
-        }
-
         .loader-wrap {
-            width: min(92vw, 760px);
+            width: min(90vw, 500px);
             text-align: center;
-            position: relative;
-            z-index: 2;
-            padding: 2rem;
-        }
-
-        .loader-kicker {
-            letter-spacing: .34em;
-            text-transform: uppercase;
-            font-size: .78rem;
-            color: rgba(247, 239, 230, .68);
-            margin-bottom: 1rem;
-        }
-
-        .loader-title {
-            font-family: "Cormorant Garamond", serif;
-            font-size: clamp(3rem, 8vw, 7rem);
-            line-height: .95;
-            font-weight: 600;
-            margin: 0 0 1rem;
-        }
-
-        .loader-sub {
-            width: min(100%, 560px);
-            margin: 0 auto 2rem;
-            color: rgba(247, 239, 230, .76);
-            font-size: clamp(.98rem, 1.6vw, 1.08rem);
-        }
-
-        .loader-orbit {
-            width: 180px;
-            height: 180px;
-            margin: 0 auto 2rem;
-            position: relative;
-        }
-
-        .loader-ring,
-        .loader-ring::before,
-        .loader-ring::after {
-            position: absolute;
-            inset: 0;
-            border-radius: 50%;
-            border: 1px solid rgba(255, 255, 255, .12);
-        }
-
-        .loader-ring {
-            animation: spin 9s linear infinite;
-        }
-
-        .loader-ring::before {
-            content: "";
-            inset: 14px;
-            border-color: rgba(212, 180, 140, .38);
-            animation: spinReverse 6s linear infinite;
-        }
-
-        .loader-ring::after {
-            content: "";
-            inset: 34px;
-            border-color: rgba(255, 255, 255, .2);
-            animation: spin 4.5s linear infinite;
-        }
-
-        .loader-core {
-            position: absolute;
-            inset: 50%;
-            width: 18px;
-            height: 18px;
-            margin: -9px;
-            border-radius: 50%;
-            background: radial-gradient(circle at 35% 35%, #fff, var(--gold) 45%, var(--accent) 100%);
-            box-shadow: 0 0 30px rgba(212, 180, 140, .6);
-            animation: pulse 2s ease-in-out infinite;
-        }
-
-        @keyframes spin {
-            to {
-                transform: rotate(360deg)
-            }
-        }
-
-        @keyframes spinReverse {
-            to {
-                transform: rotate(-360deg)
-            }
-        }
-
-        @keyframes pulse {
-
-            0%,
-            100% {
-                transform: scale(1);
-                opacity: 1
-            }
-
-            50% {
-                transform: scale(1.45);
-                opacity: .75
-            }
-        }
-
-        .progress-shell {
-            width: min(100%, 540px);
-            margin: 0 auto;
-            display: grid;
-            gap: .75rem;
-        }
-
-        .progress-meta {
-            display: flex;
-            justify-content: space-between;
-            gap: 1rem;
-            color: rgba(247, 239, 230, .72);
-            font-size: .88rem;
+            padding: 1.5rem;
         }
 
         .progress-bar {
             height: 10px;
             border-radius: 999px;
-            background: rgba(255, 255, 255, .08);
+            background: rgba(255, 255, 255, .1);
             overflow: hidden;
-            border: 1px solid rgba(255, 255, 255, .08);
-            box-shadow: inset 0 0 0 1px rgba(255, 255, 255, .04);
+            margin-top: 15px;
         }
 
         .progress-fill {
             height: 100%;
             width: 0%;
-            border-radius: inherit;
-            background:
-                linear-gradient(90deg, rgba(212, 180, 140, .85), rgba(255, 255, 255, .95), rgba(138, 90, 68, .85));
-            background-size: 200% 100%;
-            animation: shimmer 2.4s linear infinite;
-            transition: width .45s var(--ease);
-            box-shadow: 0 0 24px rgba(212, 180, 140, .28);
-        }
-
-        @keyframes shimmer {
-            0% {
-                background-position: 0% 50%
-            }
-
-            100% {
-                background-position: 200% 50%
-            }
+            background: linear-gradient(90deg, var(--gold), #ffffff, var(--accent));
+            transition: width .15s linear;
         }
 
         .loader-skip {
-            margin-top: 1.25rem;
-            display: inline-flex;
-            align-items: center;
-            gap: .6rem;
-            padding: .85rem 1.15rem;
+            margin-top: 1.5rem;
+            padding: .6rem 1.4rem;
             border-radius: 999px;
-            border: 1px solid rgba(255, 255, 255, .14);
-            background: rgba(255, 255, 255, .06);
+            border: 1px solid rgba(255, 255, 255, .2);
+            background: rgba(255, 255, 255, .08);
             color: #fff;
             cursor: pointer;
-            transition: transform .35s var(--ease), background .35s var(--ease), border-color .35s var(--ease);
-            backdrop-filter: blur(8px);
         }
 
-        .loader-skip:hover {
-            transform: translateY(-2px);
-            background: rgba(255, 255, 255, .11);
-            border-color: rgba(255, 255, 255, .24);
-        }
-
-        .brand-mark {
-            width: 42px;
-            height: 42px;
-            border-radius: 50%;
-            display: grid;
-            place-items: center;
-            background: linear-gradient(135deg, var(--deep), #46342d);
-            color: #fff;
-            box-shadow: var(--shadow);
-            font-family: "Cormorant Garamond", serif;
-            font-size: 1.25rem;
-            font-weight: 700;
-        }
-
-        body.light {
-            --primary-bg: #f4f4f4;
-            --text-main: #111;
-            --panel-bg: #ddd;
-        }
-
-        nav {
-            background: cadetblue;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            position: fixed;
-            top: 0;
-            width: 100%;
-            z-index: 100;
-            border-bottom: 3px solid magenta;
-        }
-
-        .menu-list {
-            list-style: none;
-            display: flex;
-            gap: 15px;
-            padding: 15px;
-
-        }
-
-        .menu-list.hidden {
-            display: none;
-        }
-
-        .menu-list a {
-            color: black;
-            text-decoration: none;
-            font-weight: bold;
-            text-transform: uppercase;
-            background-color: #ddd;
-            padding: 15px;
-            border-radius: 15px;
-            display: block;
-            gap: 15px;
-
-        }
-
-
-        .search {
-
-
-            background-color: #e3168d;
-            width: 100%;
-            display: flex;
-
-        }
-
-
-        input {
-            padding: 15px;
-            border-radius: 20px;
-            width: 60%;
-            font-size: 1.3rem;
-        }
-
-        button {
-            padding: 5px;
-            border-radius: 10px;
-            text-transform: capitalize;
-            background: rgb(148, 170, 3);
-            font-size: 1.5rem;
-        }
-
-        header h1 {
-            padding-top: 0;
-            font-size: 2.9rem;
-            text-align: justify;
-            margin: 0;
-            text-transform: capitalize;
-            text-align: justify;
-            display: flex;
-
-        }
-
-        .darkmode {
-            display: block;
-            font-size: small;
-            justify-content: end;
-            text-align: end;
-            padding: 0;
-            text-transform: capitalize;
-            text-align: end;
-
-        }
-
-        h2 {
-            background-color: blue;
-            padding: 10px;
-            border-radius: 20px;
-        }
-
-        h5 {
-            background-color: chocolate;
-            text-align: center;
-            border-radius: 20pc;
-            padding: 15px;
-            text-transform: capitalize;
-
-        }
-
-        table {
-            background-color: aqua;
-            padding: 15px;
-            justify-content: center;
-            text-align: center;
-            text-transform: capitalize;
-            border-radius: 20px;
-            border-left: 9px solid red;
-            border-right: 9px solid black;
-            border-top: 2px solid maroon;
-        }
-
-        th {
-            background-color: rgb(224, 247, 224);
-            padding: 10px;
-            border-radius: 20px;
-            font-size: 1.2rem;
-        }
-
-        tr {
-            background-color: rgb(117, 209, 13);
-            font-size: 1.3rem;
-            padding: 15px;
-            gap: 10px;
-        }
-
-        #home,
-        #about {
-            background-color: rgb(194, 230, 165);
-            justify-content: center;
-            padding: 60px;
-            text-align: center;
-            border-radius: 20px;
-            border-bottom-right-radius: 5pc;
-            border-top-left-radius: 4pc;
-            border-left: 20px solid pink;
-            border-right: 20px solid black;
-            text-transform: capitalize;
-            color: #111;
-            gap: 20px;
-            height: 80dvh;
-        }
-
-        #contact {
-            background-color: rgb(115, 87, 148);
-            padding: 50px;
-            justify-content: center;
-            text-align: center;
-            border-radius: 20px;
-            border-bottom-right-radius: 5pc;
-            border-top-left-radius: 4pc;
-            border-left: 20px solid rgb(216, 207, 209);
-            border-right: 20px solid rgb(36, 34, 34);
-            text-transform: capitalize;
-            color: #030303;
-        }
-
-        summary {
-            background-color: black;
-            padding: 15px;
-            color: white;
-            font-size: xx-large;
-            border-radius: 10pc;
-        }
-
-        #contact {
-            background-color: rgb(114, 90, 90);
-            color: white;
-
-        }
-
-        #contact a {
-            border-radius: 20px;
-            background-color: #222;
-            padding: 10px;
-            text-decoration: none;
-
-        }
-
-        #contact a:hover {
-            background-color: wheat;
-            padding: 15px;
-            gap: 20px;
-            border-radius: 20px;
-            text-decoration: none;
-            color: chocolate;
-            font-size: 1.2rem;
-        }
-
-        /* Chatbot */
+        /* Enhanced Chatbot Widget */
         .chatbot {
             position: fixed;
             right: 1rem;
             bottom: 1rem;
-            z-index: 60;
+            z-index: 1000;
         }
 
         .chat-toggle {
-            width: 64px;
-            height: 64px;
+            width: 56px;
+            height: 56px;
             border: none;
             border-radius: 50%;
             cursor: pointer;
             display: grid;
             place-items: center;
             color: #fff;
-            background:
-                linear-gradient(135deg, var(--deep), #4b3831);
-            box-shadow: 0 18px 38px rgba(32, 23, 19, .28);
-            transition: transform .35s var(--ease), box-shadow .35s var(--ease);
+            background: var(--deep);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, .4);
+            transition: transform 0.2s var(--ease);
         }
 
         .chat-toggle:hover {
-            transform: translateY(-4px) scale(1.03);
-            box-shadow: 0 24px 44px rgba(32, 23, 19, .34);
+            transform: scale(1.08);
         }
 
         .chat-panel {
-            position: absolute;
-            right: 0;
-            bottom: 78px;
-            width: min(92vw, 360px);
-            height: 500px;
-            border-radius: 24px;
-            overflow: hidden;
-            background: rgba(251, 247, 241, .92);
-            border: 1px solid rgba(31, 26, 23, .1);
-            box-shadow: 0 30px 60px rgba(32, 23, 19, .2);
-            backdrop-filter: blur(18px);
+            position: fixed;
+            right: 1rem;
+            bottom: 5rem;
+            width: min(calc(100vw - 2rem), 360px);
+            height: clamp(400px, 60vh, 520px);
+            border-radius: 20px;
+            background: #fbf7f1;
+            border: 1px solid rgba(0,0,0,0.15);
+            box-shadow: 0 20px 50px rgba(0,0,0,0.35);
             display: grid;
             grid-template-rows: auto 1fr auto;
-            transform-origin: bottom right;
-            transform: scale(.88) translateY(12px);
             opacity: 0;
             pointer-events: none;
-            transition: transform .35s var(--ease), opacity .35s var(--ease);
+            transform: translateY(15px) scale(0.95);
+            transition: all 0.3s var(--ease);
+            overflow: hidden;
         }
 
         .chatbot.open .chat-panel {
-            transform: scale(1) translateY(0);
             opacity: 1;
             pointer-events: auto;
+            transform: translateY(0) scale(1);
         }
 
         .chat-head {
-            padding: 1rem 1rem .9rem;
+            padding: 12px 16px;
             display: flex;
-            align-items: center;
             justify-content: space-between;
-            gap: 1rem;
-            border-bottom: 1px solid rgba(31, 26, 23, .08);
-            background: linear-gradient(180deg, rgba(255, 255, 255, .7), rgba(255, 255, 255, .45));
-        }
-
-        .chat-head strong {
-            display: block;
-            font-size: 1rem;
-        }
-
-        .chat-head span {
-            color: var(--muted);
-            font-size: .82rem;
+            align-items: center;
+            background: #efe8de;
+            border-bottom: 1px solid #ddd;
+            color: #111;
         }
 
         .chat-close {
             border: none;
             background: transparent;
-            font-size: 1.25rem;
+            font-size: 1.6rem;
             cursor: pointer;
-            color: var(--muted);
+            line-height: 1;
         }
 
         .chat-messages {
-            padding: 1rem;
-            overflow: auto;
+            padding: 12px;
+            overflow-y: auto;
             display: flex;
             flex-direction: column;
-            gap: .75rem;
+            gap: 10px;
+            background: #fbf7f1;
         }
 
         .bubble {
             max-width: 85%;
-            padding: .8rem .9rem;
-            border-radius: 18px;
-            line-height: 1.55;
-            font-size: .94rem;
+            padding: 10px 14px;
+            border-radius: 16px;
+            font-size: 0.92rem;
+            word-wrap: break-word;
+            line-height: 1.4;
         }
 
         .bubble.bot {
             align-self: flex-start;
-            background: #fff;
-            border: 1px solid rgba(31, 26, 23, .08);
-            color: #2d241f;
+            background: #ffffff;
+            color: #222;
+            border: 1px solid #e0dcd5;
+            border-bottom-left-radius: 4px;
         }
 
         .bubble.user {
             align-self: flex-end;
             background: var(--deep);
             color: #fff;
+            border-bottom-right-radius: 4px;
+        }
+
+        .typing-indicator {
+            align-self: flex-start;
+            font-style: italic;
+            font-size: 0.8rem;
+            color: var(--muted);
+            display: none;
         }
 
         .chat-form {
-            display: grid;
-            grid-template-columns: 1fr auto;
-            gap: .7rem;
-            padding: 1rem;
-            border-top: 1px solid rgba(31, 26, 23, .08);
-            background: rgba(255, 255, 255, .55);
+            display: flex;
+            gap: 6px;
+            padding: 10px;
+            border-top: 1px solid #ddd;
+            background: #fff;
         }
 
         .chat-form input {
-            min-width: 0;
-            border: none;
+            flex: 1;
+            padding: 10px 14px;
+            border-radius: 20px;
+            border: 1px solid #ccc;
             outline: none;
-            border-radius: 999px;
-            padding: 0 1rem;
-            min-height: 46px;
-            background: #fff;
-            border: 1px solid rgba(31, 26, 23, .08);
-            font-family: inherit;
+            font-size: 0.95rem;
         }
 
         .chat-form button {
-            min-height: 46px;
-            padding: 0 1rem;
+            padding: 8px 16px;
+            border-radius: 20px;
             border: none;
-            border-radius: 999px;
             background: var(--deep);
             color: #fff;
             cursor: pointer;
+            font-weight: 600;
         }
 
-        /* Responsive */
-        @media (min-width: 760px) {
-            nav ul {
-                display: flex
+        /* Mobile Breakpoints */
+        @media (max-width: 768px) {
+            #menu-btn {
+                display: block;
             }
 
-            .hero-grid {
-                grid-template-columns: 1.05fr .95fr
+            .menu-list {
+                position: absolute;
+                top: 100%;
+                left: 0;
+                width: 100%;
+                flex-direction: column;
+                background-color: cadetblue;
+                padding: 15px;
+                gap: 10px;
+                box-shadow: 0 10px 20px rgba(0,0,0,0.2);
             }
 
-            .about-layout {
-                grid-template-columns: 1.2fr .8fr
+            .menu-list.hidden {
+                display: none;
             }
 
-            .work-grid {
-                grid-template-columns: 1.15fr .85fr
+            .content-section {
+                border-left-width: 8px;
+                border-right-width: 8px;
             }
 
-            .project:nth-child(1) {
-                min-height: 460px
-            }
-
-            .project:nth-child(2) {
-                min-height: 220px
-            }
-
-            .project:nth-child(3) {
-                min-height: 220px
-            }
-
-            .project:nth-child(4) {
-                min-height: 300px;
-                grid-column: 1 / -1
-            }
-
-            .quotes {
-                grid-template-columns: repeat(3, 1fr)
-            }
-
-            .service-line {
-                grid-template-columns: .45fr 1fr;
-                align-items: start;
-            }
-
-            .section-head {
-                grid-template-columns: .9fr 1fr;
-                align-items: end;
-            }
-        }
-
-        @media (min-width: 1100px) {
-            .hero {
-                padding: 5rem 0 3rem
-            }
-
-            .services-layout {
-                gap: 0
-            }
-
-            .contact-wrap {
-                padding: 2.25rem
-            }
-        }
-
-        @media (prefers-reduced-motion: reduce) {
-            * {
-                animation: none !important;
-                transition: none !important;
-                scroll-behavior: auto !important;
+            .chat-panel {
+                right: 0.5rem;
+                left: 0.5rem;
+                width: auto;
+                bottom: 4.5rem;
             }
         }
     </style>
@@ -763,339 +540,245 @@
 
 <body class="loading">
     <div class="grain"></div>
-    <div class="loader-screen" aria-live="polite" aria-label="Loading portfolio experience">
+
+    <!-- Animated Loading Screen -->
+    <div class="loader-screen" id="loaderScreen">
         <div class="loader-wrap">
-            <div class="loader-kicker">Preparing the experience</div>
-            <h1 class="loader-title">Portfolio<br>Loading</h1>
-            <p class="loader-sub">
-                A cinematic entrance for portfolio. 1-minute loading sequence, with
-                the option to skip anytime.
-            </p>
+            <h1 style="font-size: 2rem; margin-bottom: 5px;">Edward's Portfolio</h1>
+            <p style="color: rgba(255,255,255,0.7); font-size: 0.9rem;">Loading experience...</p>
 
-            <div class="loader-orbit" aria-hidden="true">
-                <div class="loader-ring"></div>
-                <div class="loader-core"></div>
+            <div class="progress-bar">
+                <div class="progress-fill" id="progressFill"></div>
             </div>
 
-            <div class="progress-shell">
-                <div class="progress-meta">
-                    <span id="progressLabel">Calibrating visuals…</span>
-                    <strong id="progressText">0%</strong>
-                </div>
-                <div class="progress-bar" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
-                    <div class="progress-fill" id="progressFill"></div>
-                </div>
-            </div>
-
-            <button class="loader-skip" id="skipLoader" type="button" aria-label="Skip loading animation">
-                Skip intro
-                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-                    <path d="M5 12h14M13 5l7 7-7 7" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"
-                        stroke-linejoin="round" />
-                </svg>
-            </button>
+            <button class="loader-skip" id="skipLoader" type="button">Skip intro →</button>
         </div>
     </div>
+
+    <!-- Navigation Header -->
     <header>
         <nav>
-            <h1>
-                <a href="#home">
-                    <span class="brand-mark">E</span>
-                    <span>Edward Portfolio</span>
-                </a>
-            </h1>
-            <button id="menu-btn" style="padding: 5px 15px; font-size: 1.5rem;">☰</button>
+            <a href="#home" class="brand">
+                <span class="brand-mark">E</span>
+                <span>Edward Portfolio</span>
+            </a>
+            <button id="menu-btn" aria-label="Toggle navigation">☰</button>
             <ul id="nav-links" class="menu-list hidden">
-                <li><a href="#home">home</a> </li>
-                <li> <a href="#about">about</a></li>
-                <li> <a href="#contact">contact</a></li>
+                <li><a href="#home">Home</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#contact">Contact</a></li>
             </ul>
         </nav>
-        <section class="search">
-            <input type="search" placeholder="Search...">
-            <button id="search">search</button>
-            <section class="darkmode">
-                <label for="dark">light mode</label>
-                <input type="checkbox" id="theme-toggle">
-            </section>
-        </section>
+        <div class="search-bar">
+            <div class="search-wrapper">
+                <input type="search" id="searchInput" placeholder="Search portfolio contents...">
+                <button id="searchBtn">Search</button>
+            </div>
+            <label class="darkmode">
+                <input type="checkbox" id="theme-toggle"> Light Mode
+            </label>
+        </div>
     </header>
-    <div id="home">
-        <h1>Home</h1>
-        <h2>Welcome to My Portfolio</h2>
-        <p>This is the home section of my portfolio.
-            Here you can find an overview of my work and achievements.
-        </p>
-    </div>
 
-    <div id="about">
-        <h1>About </h1>
-        <p>This is the about section of my portfolio.
-            Here you can find more information about me.This is the more section of my portfolio.
-        </p>
-        <details>
-            <summary>click to see more</summary>
-            <h5>information</h5>
-            <table id="information table">
-                <tr>
-                    <th>education</th>
-                    <th>institution and location</th>
-                    <th>years</th>
-                </tr>
-                <tr>
-                    <td>pregroup</td>
-                    <td>joymony academy
-                        location:kisii, kegogi
-                    </td>
-                    <td>from jan 2011- sep.2016</td>
-                </tr>
-                <tr>
-                    <td>primary education</td>
-                    <td>rirari f.p.f.k primary school
-                        locaton:kisii, kegogi
-                    </td>
-                    <td>from sep.2016 - march.2021</td>
-                </tr>
-                <tr>
-                    <td>secondary education</td>
-                    <td>tambacha c.o.g mixed secondary school
-                        locaton:kisii, kegogi
-                    </td>
-                    <td>from aug.2021-nov.2024</td>
-                </tr>
-                <tr>
-                    <td>further education</td>
-                    <td>rongo unveristiy
-                        locaton:migori, rongo, kitere hills
-                        <p>taking bs.computer scince</p>
-                    </td>
-                    <td>from aug.2025-curently</td>
-                </tr>
-            </table>
-        </details>
-    </div>
+    <!-- Main Content Container -->
+    <main>
+        <section id="home" class="content-section">
+            <h1>Home</h1>
+            <h2>Welcome to My Portfolio</h2>
+            <p>Explore my personal showcase, academic background, and technical journey in Computer Science.</p>
+        </section>
 
-    <div id="contact">
-        <h1>contact me thro;</h1>
-        <a href="https://wa.me/245706407311" target="_blank">whatsapp</a>
-        <a href="https://www.instagram.com/micedujrn?igsh=cDZ4MnZteTc3djhx">Instagram</a>
-        <a href="https://www.facebook.com/profile.php?id=61578212519644">facebook</a>
-        <a href="https://www.tiktok.com/@edujrn254?_r=1&_t=ZS-94DLwazFuQ3">tiktok</a>
-        <a href="mailto:edujrnmic@gmail.com">email</a>
-    </div>
+        <section id="about" class="content-section">
+            <h1>About Me</h1>
+            <p>Welcome to the background section of my portfolio. Read further to see details on my education.</p>
+            <details>
+                <summary>Click to view Education History</summary>
+                <div class="table-responsive">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Education</th>
+                                <th>Institution & Location</th>
+                                <th>Years</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Pre-group</td>
+                                <td>Joymony Academy (Kisii, Kegogi)</td>
+                                <td>Jan 2011 - Sep 2016</td>
+                            </tr>
+                            <tr>
+                                <td>Primary Education</td>
+                                <td>Rirari F.P.F.K Primary School (Kisii, Kegogi)</td>
+                                <td>Sep 2016 - Mar 2021</td>
+                            </tr>
+                            <tr>
+                                <td>Secondary Education</td>
+                                <td>Tambacha C.O.G Mixed Secondary School (Kisii, Kegogi)</td>
+                                <td>Aug 2021 - Nov 2024</td>
+                            </tr>
+                            <tr>
+                                <td>Further Education</td>
+                                <td>Rongo University (Migori, Kitere Hills) - B.Sc. Computer Science</td>
+                                <td>Aug 2025 - Present</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </details>
+        </section>
+
+        <section id="contact" class="content-section">
+            <h1>Contact Me</h1>
+            <p>Feel free to reach out to me directly on any of these platforms:</p>
+            <div class="links-grid">
+                <a href="https://wa.me/245706407311" target="_blank" rel="noopener">WhatsApp</a>
+                <a href="https://www.instagram.com/micedujrn" target="_blank" rel="noopener">Instagram</a>
+                <a href="https://www.facebook.com/profile.php?id=61578212519644" target="_blank" rel="noopener">Facebook</a>
+                <a href="https://www.tiktok.com/@edujrn254" target="_blank" rel="noopener">TikTok</a>
+                <a href="mailto:edujrnmic@gmail.com">Email</a>
+            </div>
+        </section>
+    </main>
+
+    <!-- Chatbot Widget -->
     <div class="chatbot" id="chatbot">
-        <div class="chat-panel" aria-label="Chat assistant">
+        <div class="chat-panel">
             <div class="chat-head">
                 <div>
-                    <strong>Portfolio Assistant</strong>
-                    <span>Ask about me</span>
+                    <strong>Edward's Assistant</strong><br>
+                    <small style="color: #666;">Ask me anything about Edward!</small>
                 </div>
-                <button class="chat-close" id="chatClose" aria-label="Close chat">×</button>
+                <button class="chat-close" id="chatClose" aria-label="Close assistant">&times;</button>
             </div>
-
             <div class="chat-messages" id="chatMessages">
-                <div class="bubble bot">Hello —
-                    I’m the portfolio assistant.
-                    Ask me</div>
-                <div class="bubble bot">Try: “How can I get started?”</div>
+                <div class="bubble bot">Hi there! 👋 I'm Edward's automated assistant. Ask me about his education, skills, or contact info.</div>
             </div>
-
+            <div class="typing-indicator" id="typingIndicator">Assistant is typing...</div>
             <form class="chat-form" id="chatForm">
-                <input type="text" id="chatInput" placeholder="Type your question..." aria-label="Type your message" />
+                <input type="text" id="chatInput" placeholder="Type a message..." required autocomplete="off">
                 <button type="submit">Send</button>
             </form>
         </div>
 
-        <button class="chat-toggle" id="chatToggle" aria-label="Open chatbot">
-            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-                <path
-                    d="M8 10h8M8 14h5M12 3c4.97 0 9 3.582 9 8s-4.03 8-9 8c-.912 0-1.793-.12-2.618-.344L4 21l1.42-4.26C4.52 15.307 3 13.263 3 11c0-4.418 4.03-8 9-8Z"
-                    stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" />
-            </svg>
-        </button>
+        <button class="chat-toggle" id="chatToggle" aria-label="Open assistant">💬</button>
     </div>
 
-
-
     <script>
-        // Toggle Navigation Menu
+        // 1. Smooth Page Loader Timer
+        const body = document.body;
+        const progressFill = document.getElementById('progressFill');
+        const skipLoader = document.getElementById('skipLoader');
+        let progress = 0;
+
+        function finishLoader() {
+            body.classList.remove('loading');
+            body.classList.add('loaded');
+        }
+
+        const loaderInterval = setInterval(() => {
+            progress += 5;
+            if (progressFill) progressFill.style.width = progress + '%';
+            if (progress >= 100) {
+                clearInterval(loaderInterval);
+                setTimeout(finishLoader, 300);
+            }
+        }, 30);
+
+        skipLoader.addEventListener('click', () => {
+            clearInterval(loaderInterval);
+            finishLoader();
+        });
+
+        // 2. Mobile Nav Toggle
         const menuBtn = document.getElementById('menu-btn');
         const navLinks = document.getElementById('nav-links');
-
         menuBtn.addEventListener('click', () => {
             navLinks.classList.toggle('hidden');
         });
 
-        // Toggle Dark/Light Mode
+        // 3. Theme Mode Switcher
         const themeToggle = document.getElementById('theme-toggle');
         themeToggle.addEventListener('change', () => {
-            document.body.classList.toggle('light');
+            body.classList.toggle('light', themeToggle.checked);
         });
 
-        document.getElementById("search").addEventListener("click", function () {
-            var searchTerm = document.querySelector("input[type='search']").value.toLowerCase();
-            var sections = document.querySelectorAll("section div");
-            sections.forEach(function (section) {
-                if (section.textContent.toLowerCase().includes(searchTerm)) {
-                    section.style.display = "block";
+        // 4. Content Search Filter
+        document.getElementById('searchBtn').addEventListener('click', () => {
+            const query = document.getElementById('searchInput').value.toLowerCase().trim();
+            const sections = document.querySelectorAll('.content-section');
+
+            sections.forEach(sec => {
+                if (!query || sec.textContent.toLowerCase().includes(query)) {
+                    sec.style.display = 'block';
                 } else {
-                    section.style.display = "none";
+                    sec.style.display = 'none';
                 }
             });
         });
-        //loading animation
-        const body = document.body;
-        const progressFill = document.getElementById('progressFill');
-        const progressText = document.getElementById('progressText');
-        const progressLabel = document.getElementById('progressLabel');
-        const progressBar = document.querySelector('.progress-bar');
-        const skipLoader = document.getElementById('skipLoader');
 
-        const phases = [
-            { at: 8, text: 'Loading typography…' },
-            { at: 22, text: 'Composing layouts…' },
-            { at: 41, text: 'Refining motion…' },
-            { at: 63, text: 'Preparing portfolio sections…' },
-            { at: 82, text: 'Activating assistant…' },
-            { at: 98, text: 'Almost ready…' }
-        ];
-
-        const DEMO_DURATION = 60000; // 1 minute
-        let startedAt = Date.now();
-        let rafId;
-        let finished = false;
-
-        function finishLoading() {
-            if (finished) return;
-            finished = true;
-            cancelAnimationFrame(rafId);
-            progressFill.style.width = '100%';
-            progressText.textContent = '100%';
-            progressLabel.textContent = 'Experience ready';
-            progressBar.setAttribute('aria-valuenow', '100');
-            setTimeout(() => {
-                body.classList.remove('loading');
-                body.classList.add('loaded');
-            }, 450);
-        }
-
-        function updateLoader() {
-            const elapsed = Date.now() - startedAt;
-            const progress = Math.min(100, (elapsed / DEMO_DURATION) * 100);
-            const rounded = Math.floor(progress);
-
-            progressFill.style.width = progress + '%';
-            progressText.textContent = rounded + '%';
-            progressBar.setAttribute('aria-valuenow', rounded);
-
-            let currentText = phases[0].text;
-            for (const phase of phases) {
-                if (rounded >= phase.at) currentText = phase.text;
-            }
-            progressLabel.textContent = currentText;
-
-            if (progress >= 100) {
-                finishLoading();
-                return;
-            }
-            rafId = requestAnimationFrame(updateLoader);
-        }
-
-        skipLoader.addEventListener('click', finishLoading);
-        requestAnimationFrame(updateLoader);
-
-        // Reveal on scroll
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('is-visible');
-                    observer.unobserve(entry.target);
-                }
-            });
-        }, { threshold: 0.16 });
-
-        document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
-
-        // Chatbot
+        // 5. Intelligent Assistant Logic
         const chatbot = document.getElementById('chatbot');
         const chatToggle = document.getElementById('chatToggle');
         const chatClose = document.getElementById('chatClose');
         const chatForm = document.getElementById('chatForm');
         const chatInput = document.getElementById('chatInput');
         const chatMessages = document.getElementById('chatMessages');
+        const typingIndicator = document.getElementById('typingIndicator');
 
-        function appendMessage(text, role = 'bot') {
-            const msg = document.createElement('div');
-            msg.className = `bubble ${role}`;
-            msg.textContent = text;
-            chatMessages.appendChild(msg);
+        chatToggle.addEventListener('click', () => chatbot.classList.toggle('open'));
+        chatClose.addEventListener('click', () => chatbot.classList.remove('open'));
+
+        function appendBubble(text, sender) {
+            const bubble = document.createElement('div');
+            bubble.className = `bubble ${sender}`;
+            bubble.textContent = text;
+            chatMessages.appendChild(bubble);
             chatMessages.scrollTop = chatMessages.scrollHeight;
         }
 
-        function getBotReply(input) {
-            const text = input.toLowerCase();
+        function getBotResponse(msg) {
+            const query = msg.toLowerCase();
 
-            if (text.includes('service') || text.includes('offer')) {
-                return 'Services include portfolio websites, premium landing pages, UI systems, and frontend refinement for brands and professionals.';
+            if (query.includes('hi') || query.includes('hello') || query.includes('hey')) {
+                return "Hello! How can I help you today? You can ask about Edward's education, contact details, or university.";
             }
-            if (text.includes('price') || text.includes('cost') || text.includes('budget')) {
-                return 'Pricing depends on scope, timeline, and complexity. A focused landing page usually starts lower than a full portfolio or brand experience.';
+            if (query.includes('education') || query.includes('school') || query.includes('study') || query.includes('university')) {
+                return "Edward is currently pursuing a B.Sc. in Computer Science at Rongo University (Kitere Hills, Migori). He previously attended Tambacha C.O.G Mixed Secondary!";
             }
-            if (text.includes('timeline') || text.includes('how long')) {
-                return 'Typical timelines range from 1–2 weeks for focused pages and 3–6 weeks for larger portfolio or brand-led websites.';
+            if (query.includes('contact') || query.includes('email') || query.includes('phone') || query.includes('whatsapp')) {
+                return "You can reach Edward via Email at edujrnmic@gmail.com or via WhatsApp at +254 706 407 311.";
             }
-            if (text.includes('start') || text.includes('get started') || text.includes('begin')) {
-                return 'You can get started by sending a short project brief through email with your goals, references, timeline, and required pages.';
+            if (query.includes('skills') || query.includes('course') || query.includes('degree')) {
+                return "Edward studies Computer Science, focusing on programming, hardware systems, algorithms, and web application development.";
             }
-            if (text.includes('availability') || text.includes('available')) {
-                return 'The designer is currently available for select freelance projects and collaborative engagements.';
+            if (query.includes('location') || query.includes('where')) {
+                return "Edward is based in Kenya, studying at Rongo University in Migori County.";
             }
-            if (text.includes('contact') || text.includes('email')) {
-                return 'You can reach out at hello@atelierportfolio.com for inquiries and project discussions.';
-            }
-            if (text.includes('hello') || text.includes('hi')) {
-                return 'Hello — happy to help. Ask me about services, pricing, timeline, or how to begin your project.';
-            }
-             if (text.includes('hello') || text.includes('mambo')) {
-                return 'Mambo — Poa . Kwa maswali zaidi tu chat whatsapp.';
-            }
-             if (text.includes('hello') || text.includes('vpy')) {
-                return 'Vpy— Uliza chochote na utapata majibu. Ama nitumie ujumbe whatsapp.';
-            }
-            return 'I can help with services, pricing, timelines, availability, and getting started. Try asking one of those.';
+
+            return "I'm not sure about that specific question, but Edward is currently studying Computer Science at Rongo University. Feel free to check out the Contact section to get in touch with him directly!";
         }
-
-        chatToggle.addEventListener('click', () => {
-            chatbot.classList.toggle('open');
-            if (chatbot.classList.contains('open')) {
-                setTimeout(() => chatInput.focus(), 220);
-            }
-        });
-
-        chatClose.addEventListener('click', () => {
-            chatbot.classList.remove('open');
-        });
 
         chatForm.addEventListener('submit', (e) => {
             e.preventDefault();
-            const value = chatInput.value.trim();
-            if (!value) return;
+            const text = chatInput.value.trim();
+            if (!text) return;
 
-            appendMessage(value, 'user');
+            appendBubble(text, 'user');
             chatInput.value = '';
 
-            setTimeout(() => {
-                appendMessage(getBotReply(value), 'bot');
-            }, 500);
-        });
+            // Show typing state
+            typingIndicator.style.display = 'block';
+            chatMessages.scrollTop = chatMessages.scrollHeight;
 
-        document.addEventListener('keydown', (e) => {
-            if (e.key === 'Escape') chatbot.classList.remove('open');
+            setTimeout(() => {
+                typingIndicator.style.display = 'none';
+                const reply = getBotResponse(text);
+                appendBubble(reply, 'bot');
+            }, 700);
         });
     </script>
 </body>
-<footer>
-    @2026| EDU PORTFOLIO @All rights reserved.
-</footer>
 
 </html>
